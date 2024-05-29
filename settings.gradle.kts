@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Gabay"
+rootProject.name = "gabay"
 include(":app")
  
