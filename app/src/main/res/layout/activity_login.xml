@@ -2,14 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/register"
+    android:id="@+id/login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity"
-    android:background="@color/md_theme_surface">
+    tools:context=".LoginActivity">
 
     <ImageView
-        android:id="@+id/imageViewRegister"
+        android:id="@+id/imageViewLogin"
         android:layout_width="244dp"
         android:layout_height="197dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -18,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.571"
-        app:srcCompat="@drawable/register" />
+        app:srcCompat="@drawable/login" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -32,28 +31,28 @@
         app:layout_constraintVertical_bias="0.608">
 
         <TextView
-            android:id="@+id/textViewRegisterHeading"
+            android:id="@+id/textViewLoginHeading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register"
+            android:text="Login"
             android:textSize="32sp" />
 
         <TextView
-            android:id="@+id/textViewRegisterSubheading"
+            android:id="@+id/textViewLoginSubheading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Please sign up to continue"
+            android:text="Please login to continue"
             android:textSize="16sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="16dp"
             app:boxBackgroundColor="@color/gray"
             app:shapeAppearanceOverlay="@style/buttonShape">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputRegisterEmail"
+                android:id="@+id/textInputLoginEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
@@ -65,13 +64,13 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="16dp"
             app:boxBackgroundColor="@color/gray"
             app:passwordToggleEnabled="true"
             app:shapeAppearanceOverlay="@style/buttonShape">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputRegisterPassword"
+                android:id="@+id/textInputLoginPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
@@ -80,31 +79,12 @@
                 android:textSize="14sp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            app:boxBackgroundColor="@color/gray"
-            app:passwordToggleEnabled="true"
-            app:shapeAppearanceOverlay="@style/buttonShape">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputRegisterConfirmPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Re-enter Password"
-                android:inputType="textPassword"
-                android:paddingStart="24dp"
-                android:paddingEnd="24dp"
-                android:textSize="14sp"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
         <Button
-            android:id="@+id/buttonEmailRegister"
+            android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="64dp"
-            android:layout_marginTop="14dp"
-            android:text="Signup"
+            android:layout_marginTop="16dp"
+            android:text="Login"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -119,22 +99,22 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
-                android:id="@+id/textViewAlreadyHaveAccount"
+                android:id="@+id/textViewDontHaveAccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="Already have an account?"
+                android:text="Don't have an account?"
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/textViewLoginRedirect"
+                android:id="@+id/textViewSignupRedirect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:gravity="center"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:text="Log in"
+                android:text="Sign up"
                 android:textColor="#673AB7"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -191,7 +171,6 @@
     </RelativeLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonGoogleRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -209,6 +188,5 @@
         app:layout_constraintVertical_bias="0.65"
         app:strokeColor="@color/dark_gray"
         app:strokeWidth="1dp" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
