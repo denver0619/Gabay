@@ -5,6 +5,8 @@
     <color name="white_but_not_white">#FEF7FF</color>
     <color name="gray">#DEE3EA</color>
     <color name="dark_gray">#A9A9A9</color>
-    <color name="yellow">#FFBF00	</color>
-
+    <color name="yellow">#FFBF00</color>
+    <color name="light_blue">#BFDAF5</color>
+    <color name="dark_blue">#042337</color>
+    <color name="light_yellow">#F5D19B</color>
 </resources>
