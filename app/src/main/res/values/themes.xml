@@ -4,7 +4,6 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:windowContentOverlay">@null</item>
-        <item name="bottomNavigationBackgroundColor">@color/black</item>
     </style>
 
     <style name="MainContent" parent="Theme.Material3.DayNight">
