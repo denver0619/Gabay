@@ -1,10 +1,9 @@
-package com.digiview.gabay;
+package com.digiview.gabay.ui.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +18,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.digiview.gabay.MainActivity;
+import com.digiview.gabay.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -36,12 +37,10 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.Objects;
 
-
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
-
-    TextInputEditText inputEmail, inputPassword;
-    Button emailLogin, googleLogin;
-    TextView textViewSignupRedirect;
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+    TextInputEditText inputEmail, inputPassword, inputReEnterPassword;
+    Button  emailSignup, googleSignup;
+    TextView textViewLoginRedirect;
     private FirebaseAuth firebaseAuth;
     private GoogleSignInClient googleSignInClient;
 
@@ -63,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                                     if (task.isSuccessful()) {
                                                         reloadThisActivity();
                                                     } else {
-                                                        Toast.makeText(LoginActivity.this, "Account Registration Failed", Toast.LENGTH_LONG).show();
+                                                        Toast.makeText(RegisterActivity.this, "Account Registration Failed", Toast.LENGTH_LONG).show();
                                                     }
                                                 }
                                             }
@@ -75,81 +74,103 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
     );
+
+
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.buttonEmailLogin) {
-            loginUserWithEmail();
-        } else if (v.getId() == R.id.buttonGoogleLogin) {
+        if (v.getId() == R.id.buttonGoogleRegister) {
+            //Google
             GoogleSignInOptions signInOptions = new GoogleSignInOptions
                     .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestIdToken(getString(R.string.web_client_id_default))
                     .requestEmail()
                     .build();
             googleSignInClient = GoogleSignIn.getClient(this, signInOptions);
-
-            // Clear any previously selected account
-            googleSignInClient.signOut().addOnCompleteListener(this, task -> {
-                Intent signInIntent = googleSignInClient.getSignInIntent();
-                activityResultLauncher.launch(signInIntent);
-            });
-        } else if (v.getId() == R.id.textViewSignupRedirect) {
-            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            Intent intent = googleSignInClient.getSignInIntent();
+            activityResultLauncher.launch(intent);
+        } else if (v.getId() == R.id.buttonEmailRegister) {
+            RegisterUserWithEmail();
+        } else if (v.getId() == R.id.textViewLoginRedirect) {
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
             startActivity(intent);
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_login);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.login), (v, insets) -> {
+        setContentView(R.layout.activity_register);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.register), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        inputEmail = findViewById(R.id.textInputLoginEmail);
-        inputPassword = findViewById(R.id.textInputLoginPassword);
-        textViewSignupRedirect = findViewById(R.id.textViewSignupRedirect);
-        emailLogin = findViewById(R.id.buttonEmailLogin);
-        googleLogin = findViewById(R.id.buttonGoogleLogin);
 
-        FirebaseApp.initializeApp(this);
+
+        //initialize all needed views
+        inputEmail = findViewById(R.id.textInputRegisterEmail);
+        inputPassword = findViewById(R.id.textInputRegisterPassword);
+        inputReEnterPassword = findViewById(R.id.textInputRegisterConfirmPassword);
+        textViewLoginRedirect = findViewById(R.id.textViewLoginRedirect);
+        emailSignup = findViewById(R.id.buttonEmailRegister);
+        googleSignup = findViewById(R.id.buttonGoogleRegister);
+
+        FirebaseApp.initializeApp(RegisterActivity.this);
         firebaseAuth = FirebaseAuth.getInstance();
 
         //GOOGLE
-        googleLogin.setOnClickListener(this);
+        googleSignup.setOnClickListener(this);
         //EMAIL
-        emailLogin.setOnClickListener(this);
+        emailSignup.setOnClickListener(this);
 
-        textViewSignupRedirect.setOnClickListener(this);
+        textViewLoginRedirect.setOnClickListener(this);
+
     }
 
-    private void loginUserWithEmail() {
+    private void RegisterUserWithEmail() {
         String emailText = Objects.requireNonNull(inputEmail.getText()).toString().trim();
         String passwordText = Objects.requireNonNull(inputPassword.getText()).toString().trim();
+        String reEnterPasswordText = Objects.requireNonNull(inputReEnterPassword.getText()).toString().trim();
 
-        if (emailText.isEmpty() || passwordText.isEmpty()) {
+        if (emailText.isEmpty() || passwordText.isEmpty() || reEnterPasswordText.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_LONG).show();
             return;
         }
 
-        firebaseAuth.signInWithEmailAndPassword(emailText, passwordText)
+        if (!passwordText.equals(reEnterPasswordText)) {
+            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        firebaseAuth.createUserWithEmailAndPassword(emailText, passwordText)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            // Send verification email
                             FirebaseUser user = firebaseAuth.getCurrentUser();
-                            if (user != null && user.isEmailVerified()) {
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                finish();
-                            } else {
-                                Toast.makeText(LoginActivity.this, "Please verify your email first", Toast.LENGTH_LONG).show();
-                                firebaseAuth.signOut();
+                            if (user != null) {
+                                user.sendEmailVerification()
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Toast.makeText(RegisterActivity.this, "Verification email sent to " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    Toast.makeText(RegisterActivity.this, "Failed to send verification email.", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
                             }
+
+                            // Redirect to login activity
+                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
                         } else {
-                            Toast.makeText(LoginActivity.this, "Login failed. " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "Registration failed. " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });

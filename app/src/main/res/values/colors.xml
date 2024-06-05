@@ -9,4 +9,5 @@
     <color name="light_blue">#BFDAF5</color>
     <color name="dark_blue">#042337</color>
     <color name="light_yellow">#F5D19B</color>
+    <color name="transparent">#00000000</color>
 </resources>

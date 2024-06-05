@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Circular background -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/dark_blue" />
+            <size
+                android:width="56dp"
+                android:height="56dp" />
+        </shape>
+    </item>
+    <!-- Plus sign icon -->
+    <item
+        android:drawable="@drawable/ic_plus_solid"
+        android:gravity="center">
+    </item>
+</layer-list>

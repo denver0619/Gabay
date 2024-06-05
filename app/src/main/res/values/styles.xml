@@ -10,4 +10,9 @@
         <item name="cornerSize">50%</item>
         <item name="android:colorBackground">#D3D3D3</item>
     </style>
+
+    <style name="form_input">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

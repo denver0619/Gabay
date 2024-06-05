@@ -1,19 +1,16 @@
 package com.digiview.gabay;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.digiview.gabay.databinding.ActivityMainBinding;
+import com.digiview.gabay.ui.categories.CategoriesFragment;
+import com.digiview.gabay.ui.spending.SpendingFragment;
+import com.digiview.gabay.ui.trips.TripsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity{

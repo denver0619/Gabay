@@ -1,15 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Gabay" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.Gabay" parent="Theme.Material3.DayNight">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="android:windowContentOverlay">@null</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/gray</item>
+        <!-- Status bar stuff. -->
+        <item name="android:statusBarColor">@color/black</item>
+<!--        <item name="android:windowLightStatusBar">false</item>-->
+
     </style>
 
-    <style name="Theme.MainActivity" parent="Theme.Material3.DayNight">
-        <item name="colorPrimary">@color/white</item>
-        <item name="android:statusBarColor">@color/black</item>
-        <item name="colorSecondaryContainer">@color/gray</item>
+    <style name="Theme.Auth" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
 </resources>
