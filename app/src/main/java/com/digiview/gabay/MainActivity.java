@@ -58,6 +58,4 @@ public class MainActivity extends AppCompatActivity{
         fragmentTransaction.replace(R.id.frameLayoutFragmentContainer, fragment);
         fragmentTransaction.commit();
     }
-
-
 }
