@@ -42,6 +42,19 @@ public class CreateTripActivity extends AppCompatActivity {
             return insets;
         });
 
+        modifyActionBar();
+
+        // Add DatePicker upon clicking on date input
+        inputStartDate = findViewById(R.id.CreateTrip_InputStartDate);
+        inputEndDate = findViewById(R.id.CreateTrip_InputEndDate);
+
+        addDatePicker(inputStartDate);
+        addDatePicker(inputEndDate);
+
+
+    }
+
+    private void modifyActionBar() {
         // Set the status bar color programmatically
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -69,15 +82,6 @@ public class CreateTripActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        // Add DatePicker upon clicking on date input
-        inputStartDate = findViewById(R.id.CreateTrip_InputStartDate);
-        inputEndDate = findViewById(R.id.CreateTrip_InputEndDate);
-
-        addDatePicker(inputStartDate);
-        addDatePicker(inputEndDate);
-
-
     }
 
     public void addDatePicker(EditText inputField){

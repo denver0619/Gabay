@@ -130,6 +130,578 @@
 
             </LinearLayout>
 
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/rounded_border_white_small"
+                android:orientation="horizontal"
+                android:paddingTop="14dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="14dp"
+                android:paddingLeft="24dp"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_category_transportation"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="12sp"/>
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="Bus Transportation"
+                        android:textStyle="bold" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="01 June 2024"/>
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:text="₱ 110.00"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/rounded_border_white_small"
+                android:orientation="horizontal"
+                android:paddingTop="14dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="14dp"
+                android:paddingLeft="24dp"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_category_transportation"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="12sp"/>
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="Bus Transportation"
+                        android:textStyle="bold" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="01 June 2024"/>
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:text="₱ 110.00"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/rounded_border_white_small"
+                android:orientation="horizontal"
+                android:paddingTop="14dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="14dp"
+                android:paddingLeft="24dp"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_category_transportation"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="12sp"/>
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="Bus Transportation"
+                        android:textStyle="bold" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="01 June 2024"/>
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:text="₱ 110.00"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/rounded_border_white_small"
+                android:orientation="horizontal"
+                android:paddingTop="14dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="14dp"
+                android:paddingLeft="24dp"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_category_transportation"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="12sp"/>
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="Bus Transportation"
+                        android:textStyle="bold" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="01 June 2024"/>
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:text="₱ 110.00"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/rounded_border_white_small"
+                android:orientation="horizontal"
+                android:paddingTop="14dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="14dp"
+                android:paddingLeft="24dp"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_category_transportation"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="12sp"/>
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="Bus Transportation"
+                        android:textStyle="bold" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="01 June 2024"/>
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:text="₱ 110.00"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/rounded_border_white_small"
+                android:orientation="horizontal"
+                android:paddingTop="14dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="14dp"
+                android:paddingLeft="24dp"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_category_transportation"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="12sp"/>
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="Bus Transportation"
+                        android:textStyle="bold" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="01 June 2024"/>
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:text="₱ 110.00"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/rounded_border_white_small"
+                android:orientation="horizontal"
+                android:paddingTop="14dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="14dp"
+                android:paddingLeft="24dp"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_category_transportation"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="12sp"/>
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="Bus Transportation"
+                        android:textStyle="bold" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="01 June 2024"/>
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:text="₱ 110.00"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/rounded_border_white_small"
+                android:orientation="horizontal"
+                android:paddingTop="14dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="14dp"
+                android:paddingLeft="24dp"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_category_transportation"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="12sp"/>
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="Bus Transportation"
+                        android:textStyle="bold" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="01 June 2024"/>
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:text="₱ 110.00"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/rounded_border_white_small"
+                android:orientation="horizontal"
+                android:paddingTop="14dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="14dp"
+                android:paddingLeft="24dp"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_category_transportation"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="12sp"/>
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="Bus Transportation"
+                        android:textStyle="bold" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="01 June 2024"/>
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:text="₱ 110.00"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/rounded_border_white_small"
+                android:orientation="horizontal"
+                android:paddingTop="14dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="14dp"
+                android:paddingLeft="24dp"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_category_transportation"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="12sp"/>
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="Bus Transportation"
+                        android:textStyle="bold" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="01 June 2024"/>
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:text="₱ 110.00"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

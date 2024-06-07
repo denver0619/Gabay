@@ -28,6 +28,12 @@ public class CreateCategoryActivity extends AppCompatActivity {
             return insets;
         });
 
+        modifyActionBar();
+
+
+    }
+
+    private void modifyActionBar() {
         // Set the status bar color programmatically
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);

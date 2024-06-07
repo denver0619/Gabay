@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base application theme. -->
-    <!--<style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        &lt;!&ndash; Customize your theme here. &ndash;&gt;
+<!--    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
 
-    </style>-->
+<!--    </style>-->
+    <style name="CustomAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Customize any attributes you want -->
+        <item name="colorPrimary">@color/dark_blue</item>
+        <item name="background">@color/white</item>
+        <item name="buttonBarPositiveButtonStyle">@style/YourPositiveButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/YourNegativeButtonStyle</item>
+    </style>
+
+    <style name="YourPositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/dark_gray</item>
+    </style>
+
+    <style name="YourNegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+
+
     <style name="buttonShape">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
@@ -22,9 +40,6 @@
         <item name="colorPrimary">@color/dark_blue</item>
         <item name="elevationOverlayColor">@color/white</item>
         <item name="elevationOverlayAccentColor">@color/white</item>
-
-
-
     </style>
 
 </resources>
