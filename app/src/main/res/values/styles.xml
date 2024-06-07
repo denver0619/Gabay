@@ -15,4 +15,16 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
+
+    <style name="CustomMaterialDatePicker" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <!-- Customize the selection color -->
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/dark_blue</item>
+        <item name="elevationOverlayColor">@color/white</item>
+        <item name="elevationOverlayAccentColor">@color/white</item>
+
+
+
+    </style>
+
 </resources>

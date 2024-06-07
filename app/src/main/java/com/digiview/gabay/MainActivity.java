@@ -1,8 +1,17 @@
 package com.digiview.gabay;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -20,10 +29,10 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Add Logo to ActionBar
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.ic_bus_solid);
-        setContentView(R.layout.activity_main);
+//        // Add Logo to ActionBar
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setIcon(R.drawable.ic_bus_solid);
+//        setContentView(R.layout.activity_main);
 
         // Set Bottom Navigation
         binding = ActivityMainBinding.inflate(getLayoutInflater());
