@@ -107,8 +107,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return insets;
         });
 
-
-
         //initialize all needed views
         inputEmail = findViewById(R.id.textInputRegisterEmail);
         inputPassword = findViewById(R.id.textInputRegisterPassword);
@@ -179,9 +177,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onStart() {
         super.onStart();
+        Toast.makeText(RegisterActivity.this, "onStart", Toast.LENGTH_LONG).show();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
+        Toast.makeText(RegisterActivity.this, String.valueOf(firebaseAuth.getCurrentUser() == null), Toast.LENGTH_LONG).show();
+
         // if there is a user go to main activity
         if(currentUser != null) {
+            Toast.makeText(RegisterActivity.this, "currentUser", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
