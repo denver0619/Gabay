@@ -3,9 +3,12 @@ package com.digiview.gabay.ui.trips;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowInsetsController;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,9 +16,20 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+
+import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import com.digiview.gabay.R;
 
 public class CreateTripActivity extends AppCompatActivity {
+
+    private EditText inputStartDate;
+    private EditText inputEndDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +68,38 @@ public class CreateTripActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        // Add DatePicker upon clicking on date input
+        inputStartDate = findViewById(R.id.CreateTrip_InputStartDate);
+        inputEndDate = findViewById(R.id.CreateTrip_InputEndDate);
+
+        addDatePicker(inputStartDate);
+        addDatePicker(inputEndDate);
+
+
+    }
+
+    public void addDatePicker(EditText inputField){
+        inputField.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                MaterialDatePicker<Long> materialDatePicker = MaterialDatePicker.Builder.datePicker()
+                        .setTitleText("Select Date")
+                        .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                        .setTheme(R.style.CustomMaterialDatePicker)
+                        .build();
+
+                materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
+                    @Override
+                    public void onPositiveButtonClick(Long selection) {
+                        // Update the date format as needed
+                        String date = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(new Date(selection));
+                        inputField.setText(MessageFormat.format("{0}", date));
+                    }
+                });
+                materialDatePicker.show(getSupportFragmentManager(), "tag");
+            }
         });
     }
 
