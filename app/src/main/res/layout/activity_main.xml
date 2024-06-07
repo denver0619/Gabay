@@ -37,6 +37,7 @@
            android:layout_height="75dp"
            android:background="@color/white"
            android:elevation="8dp"
+
            app:itemIconTint="@color/color_state"
            app:itemTextColor="@color/color_state"
            app:layout_constraintBottom_toBottomOf="parent"

@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        // Add Logo to ActionBar
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        getSupportActionBar().setIcon(R.drawable.ic_bus_solid);
-//        setContentView(R.layout.activity_main);
+        // Add Logo to ActionBar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_bus_solid);
+        setContentView(R.layout.activity_main);
 
         // Set Bottom Navigation
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -67,4 +67,22 @@ public class MainActivity extends AppCompatActivity{
         fragmentTransaction.replace(R.id.frameLayoutFragmentContainer, fragment);
         fragmentTransaction.commit();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.settings_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_settings) {
+            Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

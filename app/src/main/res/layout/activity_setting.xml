@@ -1,10 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingActivity">
+    tools:context=".SettingActivity"
+    android:background="@color/gray"
+    android:fitsSystemWindows="true">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonAbout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="1dp"
+            app:icon="@drawable/ic_about"
+            app:iconSize="24dp"
+            app:iconTint="@color/dark_blue"
+            android:text="About Us"
+            android:textColor="@color/dark_blue"
+            android:textAlignment="textStart"
+            android:textSize="18sp"
+            android:background="@drawable/container_stroke_topbottom"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonHelp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="1dp"
+            app:icon="@drawable/ic_help"
+            app:iconSize="24dp"
+            app:iconTint="@color/dark_blue"
+            android:text="Help"
+            android:textColor="@color/dark_blue"
+            android:textAlignment="textStart"
+            android:textSize="18sp"
+            android:background="@drawable/container_stroke_topbottom"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonLogout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="1dp"
+            app:icon="@drawable/ic_logout"
+            app:iconSize="24dp"
+            app:iconTint="@color/dark_blue"
+            android:text="Logout"
+            android:textColor="@color/dark_blue"
+            android:textAlignment="textStart"
+            android:textSize="18sp"
+            android:background="@drawable/container_stroke_topbottom"/>
+
+
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
+<!--</androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+
+<!--<LinearLayout-->
+<!--android:id="@+id/buttonHelp"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="50dp"-->
+<!--android:orientation="horizontal"-->
+<!--android:background="@drawable/container_stroke_topbottom">-->
+
+<!--<ImageView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:background="@drawable/ic_help"-->
+<!--    android:layout_gravity="center_vertical"-->
+<!--    android:layout_marginLeft="12dp"/>-->
+
+<!--<TextView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:text="Help"-->
+<!--    android:layout_gravity="center"-->
+<!--    android:textColor="@color/black"-->
+<!--    android:layout_marginLeft="12dp"-->
+<!--    android:textSize="18dp">-->
+<!--</TextView>-->
+
+<!--</LinearLayout>-->
