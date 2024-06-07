@@ -60,4 +60,8 @@ dependencies {
     // To use older Credentials API (Antay ng bagong version ng firebase)
     implementation("com.google.android.gms:play-services-auth:20.7.0")
 
+    // Add the dependency for the Realtime Database library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-database")
+
 }

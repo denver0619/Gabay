@@ -8,7 +8,7 @@ public class Category {
         this.category_name = category_name;
         this.category_icon = category_icon;
     }
-    String category_id;
-    String category_name;
-    Integer category_icon;
+    public String category_id;
+    public String category_name;
+    public Integer category_icon;
 }

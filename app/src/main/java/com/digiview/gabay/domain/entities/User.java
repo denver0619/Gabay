@@ -9,8 +9,8 @@ public class User {
         this.user_lname = user_lname;
     }
 
-    String user_id;
-    String user_fname;
-    String user_mname;
-    String user_lname;
+    public String user_id;
+    public String user_fname;
+    public String user_mname;
+    public String user_lname;
 }

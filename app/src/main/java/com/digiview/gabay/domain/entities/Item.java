@@ -10,9 +10,9 @@ public class Item {
         this.price = price;
     }
 
-    String item_id;
-    String trip_id;
-    String category_id;
-    String item_name;
-    Double price;
+    public String item_id;
+    public String trip_id;
+    public  String category_id;
+    public String item_name;
+    public Double price;
 }

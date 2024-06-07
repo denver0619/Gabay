@@ -21,6 +21,7 @@ import com.digiview.gabay.ui.categories.CategoriesFragment;
 import com.digiview.gabay.ui.spending.SpendingFragment;
 import com.digiview.gabay.ui.trips.TripsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -58,7 +59,8 @@ public class MainActivity extends AppCompatActivity{
             }
             return true;
         });
-
+        // Enables offline capability of firebase rtdb
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
     }
 
     private void replaceFragment(Fragment fragment){

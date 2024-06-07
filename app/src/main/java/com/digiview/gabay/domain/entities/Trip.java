@@ -10,9 +10,9 @@ public class Trip {
         this.start_date = start_date;
         this.end_date = end_date;
     }
-    String trip_id;
-    String trip_name;
-    Double budget;
-    String start_date;
-    String end_date;
+    public String trip_id;
+    public String trip_name;
+    public Double budget;
+    public String start_date;
+    public String end_date;
 }
