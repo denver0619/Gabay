@@ -21,6 +21,11 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="CustomRadioButton">
+        <item name="colorPrimary">@color/black</item>
+        <item name="buttonTint">@color/dark_blue</item>
+    </style>
+
 
 
     <style name="buttonShape">

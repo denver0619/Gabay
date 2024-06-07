@@ -11,5 +11,7 @@
     <color name="dark_blue">#042337</color>
     <color name="light_yellow">#F5D19B</color>
     <color name="transparent">#00000000</color>
+    <color name="selected_icon_background_color">#FF4081</color>
+    <color name="selected_icon_border_color">#FFFFFF</color>
 
 </resources>
