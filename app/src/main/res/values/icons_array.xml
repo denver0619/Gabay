@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="icon_id">
+        <item>@drawable/ic_transportation_101</item>
+        <item>@drawable/ic_transportation_102</item>
+        <item>@drawable/ic_transportation_103</item>
+        <item>@drawable/ic_transportation_104</item>
+        <item>@drawable/ic_transportation_105</item>
+    </array>
+</resources>

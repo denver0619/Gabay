@@ -1,21 +1,38 @@
 package com.digiview.gabay.ui.categories;
 
+
 import android.os.Build;
 import android.os.Bundle;
+
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowInsetsController;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.digiview.gabay.R;
+import com.digiview.gabay.IconAdapter;
+import com.digiview.gabay.ui.categories.Icon;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class CreateCategoryActivity extends AppCompatActivity {
+
+
+    private RecyclerView iconRecyclerView;
+    private TextView selectedIconTextView;
+    private IconAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +48,34 @@ public class CreateCategoryActivity extends AppCompatActivity {
         modifyActionBar();
 
 
+        iconRecyclerView = findViewById(R.id.iconRecyclerView);
+        selectedIconTextView = findViewById(R.id.selectedIconTextView); // Initialize the TextView
+        iconRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+
+
+        List<Icon> iconList = generateDummyIcons();
+        adapter = new IconAdapter(iconList, new IconAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int iconId) {
+                // Update the TextView with the ID of the selected icon
+                selectedIconTextView.setVisibility(View.VISIBLE);
+                selectedIconTextView.setText("Selected Icon ID: " + iconId);
+            }
+        });
+        iconRecyclerView.setAdapter(adapter);
+
+
+
+    }
+
+    private List<Icon> generateDummyIcons() {
+        List<Icon> iconList = new ArrayList<>();
+        // Add your icon resources here
+        iconList.add(new Icon(R.drawable.ic_accomodation_101));
+        iconList.add(new Icon(R.drawable.ic_accomodation_102));
+        iconList.add(new Icon(R.drawable.ic_accomodation_103));
+        // Add more icons as needed
+        return iconList;
     }
 
     private void modifyActionBar() {
@@ -72,4 +117,7 @@ public class CreateCategoryActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
+
