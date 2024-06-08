@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowInsetsController;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,6 +17,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.digiview.gabay.domain.entities.Trip;
+import com.digiview.gabay.services.TripsService;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
@@ -26,11 +29,18 @@ import java.util.Locale;
 
 import com.digiview.gabay.R;
 
-public class CreateTripActivity extends AppCompatActivity {
+public class CreateTripActivity extends AppCompatActivity implements  View.OnClickListener{
+    //CONSTRUCTORS
 
+    //CLASS VARIABLES
+    private EditText inputName;
+    private EditText inputBudget;
     private EditText inputStartDate;
     private EditText inputEndDate;
+    private Button saveButton;
+    private TripsService tripsService;
 
+    //ANDROID LIFECYCLE OVERRIDES
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +54,16 @@ public class CreateTripActivity extends AppCompatActivity {
 
         modifyActionBar();
 
+        tripsService = TripsService.getInstance();
+
         // Add DatePicker upon clicking on date input
+        inputName = findViewById(R.id.CreateTrip_InputTripName);
+        inputBudget = findViewById(R.id.CreateTrip_InputBudget);
         inputStartDate = findViewById(R.id.CreateTrip_InputStartDate);
         inputEndDate = findViewById(R.id.CreateTrip_InputEndDate);
+        saveButton = findViewById(R.id.button_CreateTrip);
+
+        saveButton.setOnClickListener(this);
 
         addDatePicker(inputStartDate);
         addDatePicker(inputEndDate);
@@ -54,6 +71,26 @@ public class CreateTripActivity extends AppCompatActivity {
 
     }
 
+    //OTHER OVERRIDES
+    @Override
+    public void onClick(View v) {
+        int currentID = v.getId();
+        if (currentID == R.id.button_CreateTrip) {
+            onTripSave();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // Handle the close button click
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //CUSTOM FUNCTIONS/METHODS
     private void modifyActionBar() {
         // Set the status bar color programmatically
         Window window = getWindow();
@@ -107,13 +144,13 @@ public class CreateTripActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            // Handle the close button click
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    public void onTripSave() {
+        Trip trip = new Trip();
+        trip.trip_name = inputName.getText().toString();
+        trip.budget = Double.valueOf(inputBudget.getText().toString());
+        trip.start_date = inputStartDate.getText().toString();
+        trip.end_date = inputEndDate.getText().toString();
+        tripsService.createTrip(trip);
     }
+
 }
