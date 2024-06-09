@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.digiview.gabay.domain.entities.Trip;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -14,6 +15,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public final class TripsService {
     // Declare all the needed variables
@@ -60,6 +63,7 @@ public final class TripsService {
         DatabaseReference existingRef = userDBRef.child(key);
         existingRef.removeValue();
     }
+
 
     public void addChildEventListener(FirebaseChildEventListenerCallback<DataSnapshot> callback) {
         userDBRef.addChildEventListener(new ChildEventListener() {

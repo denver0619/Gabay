@@ -9,13 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.digiview.gabay.R;
+import com.digiview.gabay.domain.entities.Trip;
 
 import java.util.ArrayList;
+import java.util.List;
 
 class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.TripViewHolder> {
 
-    List<TripModel> tripList;
-    public TripsAdapter(List<TripModel> tripList){
+    List<Trip> tripList;
+    public TripsAdapter(List<Trip> tripList){
         this.tripList = tripList;
     }
     @NonNull
@@ -30,10 +32,9 @@ class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.TripViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull TripsAdapter.TripViewHolder holder, int position) {
         // Assigning values to the views created in recycler row layout based on the position of recycler view
-        TripModel trip = tripList.get(position);
-        holder.tripName.setText(trip.getName());
-        holder.tripDate.setText(trip.getDate());
-
+        Trip trip = tripList.get(position);
+        holder.tripName.setText(trip.trip_name);
+        holder.tripDate.setText(trip.trip_start_date);
     }
 
     @Override
