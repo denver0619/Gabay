@@ -4,15 +4,24 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.digiview.gabay.R;
+import com.digiview.gabay.domain.entities.Category;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
+
 public class CategoriesFragment extends Fragment {
+
+    private RecyclerView recyclerView;
+    private CategoriesAdapter categoriesAdapter;
+    private List<Category> categories;
+    // private CategoryService categoryService;
 
     public CategoriesFragment(){
         // require a empty public constructor
@@ -21,7 +30,11 @@ public class CategoriesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_categories, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_categories, container, false);
+
+
+        return view;
     }
 
     @Override

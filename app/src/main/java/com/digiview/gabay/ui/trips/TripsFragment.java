@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.digiview.gabay.MainActivity;
 import com.digiview.gabay.R;
 import com.digiview.gabay.domain.entities.Trip;
 import com.digiview.gabay.services.FirebaseChildEventListenerCallback;
@@ -22,10 +23,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class TripsFragment extends Fragment {
+public class TripsFragment extends Fragment implements TripInterface{
 
     // Pass the model
     // ArrayList<TripModel> tripModels = new ArrayList();
@@ -50,7 +52,7 @@ public class TripsFragment extends Fragment {
         //setupModels
 
         trips = new ArrayList<>();
-        tripsAdapter = new TripsAdapter(trips);
+        tripsAdapter = new TripsAdapter(getContext(), trips, this);
 
         //initialize service
         tripsService = TripsService.getInstance();
@@ -96,7 +98,7 @@ public class TripsFragment extends Fragment {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Trip trip = snapshot.getValue(Trip.class);
-                Toast.makeText(getActivity(), trip.trip_name, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getActivity(), trip.trip_name, Toast.LENGTH_SHORT).show();
                 trips.add(0, trip);
                 tripsAdapter.notifyItemInserted(0);
             }
@@ -125,5 +127,16 @@ public class TripsFragment extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(requireContext(), TripDetailsActivity.class);
+
+        intent.putExtra("TRIP_NAME", trips.get(position).trip_name);
+        intent.putExtra("TRIP_DATE", trips.get(position).trip_start_date);
+
+        startActivity(intent);
+
     }
 }
