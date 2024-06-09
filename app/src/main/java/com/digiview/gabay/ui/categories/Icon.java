@@ -1,6 +1,6 @@
 package com.digiview.gabay.ui.categories;
 
-public class Icon {
+class Icon {
     private int iconResource;
 
     public Icon(int iconResource) {

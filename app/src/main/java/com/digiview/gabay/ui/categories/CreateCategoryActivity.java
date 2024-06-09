@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowInsetsController;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -20,8 +21,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.digiview.gabay.R;
-import com.digiview.gabay.IconAdapter;
-import com.digiview.gabay.ui.categories.Icon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +32,7 @@ public class CreateCategoryActivity extends AppCompatActivity {
     private RecyclerView iconRecyclerView;
     private TextView selectedIconTextView;
     private IconAdapter adapter;
+    private ImageView outputIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,8 @@ public class CreateCategoryActivity extends AppCompatActivity {
 
         iconRecyclerView = findViewById(R.id.iconRecyclerView);
         selectedIconTextView = findViewById(R.id.selectedIconTextView); // Initialize the TextView
-        iconRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        iconRecyclerView.setLayoutManager(new GridLayoutManager(this, 5));
+        outputIcon = findViewById(R.id.outputIcon);
 
 
         List<Icon> iconList = generateDummyIcons();
@@ -60,6 +61,12 @@ public class CreateCategoryActivity extends AppCompatActivity {
                 // Update the TextView with the ID of the selected icon
                 selectedIconTextView.setVisibility(View.VISIBLE);
                 selectedIconTextView.setText("Selected Icon ID: " + iconId);
+
+
+                outputIcon.setImageResource(iconId);
+
+                // Insert Action Upon Item Click
+
             }
         });
         iconRecyclerView.setAdapter(adapter);
@@ -74,6 +81,34 @@ public class CreateCategoryActivity extends AppCompatActivity {
         iconList.add(new Icon(R.drawable.ic_accomodation_101));
         iconList.add(new Icon(R.drawable.ic_accomodation_102));
         iconList.add(new Icon(R.drawable.ic_accomodation_103));
+        iconList.add(new Icon(R.drawable.ic_accomodation_104));
+        iconList.add(new Icon(R.drawable.ic_accomodation_105));
+
+        iconList.add(new Icon(R.drawable.ic_attraction_101));
+        iconList.add(new Icon(R.drawable.ic_attraction_102));
+        iconList.add(new Icon(R.drawable.ic_attraction_103));
+        iconList.add(new Icon(R.drawable.ic_attraction_104));
+        iconList.add(new Icon(R.drawable.ic_attraction_105));
+
+        iconList.add(new Icon(R.drawable.ic_clothes_101));
+        iconList.add(new Icon(R.drawable.ic_clothes_102));
+        iconList.add(new Icon(R.drawable.ic_clothes_103));
+        iconList.add(new Icon(R.drawable.ic_clothes_104));
+        iconList.add(new Icon(R.drawable.ic_clothes_105));
+
+        iconList.add(new Icon(R.drawable.ic_food_101));
+        iconList.add(new Icon(R.drawable.ic_food_102));
+        iconList.add(new Icon(R.drawable.ic_food_103));
+        iconList.add(new Icon(R.drawable.ic_food_104));
+        iconList.add(new Icon(R.drawable.ic_food_105));
+
+        iconList.add(new Icon(R.drawable.ic_transportation_101));
+        iconList.add(new Icon(R.drawable.ic_transportation_102));
+        iconList.add(new Icon(R.drawable.ic_transportation_103));
+        iconList.add(new Icon(R.drawable.ic_transportation_104));
+        iconList.add(new Icon(R.drawable.ic_transportation_105));
+
+
         // Add more icons as needed
         return iconList;
     }

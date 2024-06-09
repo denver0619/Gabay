@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +14,15 @@ import android.view.ViewGroup;
 import com.digiview.gabay.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+
 public class TripsFragment extends Fragment {
+
+    // Pass the model
+    // ArrayList<TripModel> tripModels = new ArrayList();
+    private RecyclerView recyclerView;
+    private TripsAdapter tripsAdapter;
+    private List<TripModel> tripModels;
 
     public TripsFragment(){
         // require a empty public constructor
@@ -21,7 +31,19 @@ public class TripsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_trips, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_trips, container, false);
+
+        RecyclerView recyclerView = view.findViewById(R.id.Trips_RecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        //setupModels
+        tripModels = new ArrayList<>();
+        tripsAdapter = new TripsAdapter(tripModels);
+        recyclerView.setAdapter(tripsAdapter);
+
+        // fetchTripsFromFirebase();
+
+        return view;
     }
 
     @Override
@@ -46,4 +68,21 @@ public class TripsFragment extends Fragment {
         FloatingActionButton fab = getActivity().findViewById(R.id.main_fab);
         fab.hide(); // Hide the FAB when the fragment is not visible
     }
+
+//    private void fetchTripsFromFirebase() {
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        db.collection("trips")
+//                .get()
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        for (DocumentSnapshot document : task.getResult()) {
+//                            TripModel trip = document.toObject(TripModel.class);
+//                            tripModels.add(trip);
+//                        }
+//                        tripsAdapter.notifyDataSetChanged();
+//                    } else {
+//                        // Handle the error
+//                    }
+//                });
+//    }
 }

@@ -1,6 +1,6 @@
-package com.digiview.gabay;
+package com.digiview.gabay.ui.categories;
 
-import com.digiview.gabay.ui.categories.Icon;
+import com.digiview.gabay.R;
 
 import android.view.LayoutInflater;
 import android.view.View;
