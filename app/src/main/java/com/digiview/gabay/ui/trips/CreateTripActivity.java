@@ -147,10 +147,11 @@ public class CreateTripActivity extends AppCompatActivity implements  View.OnCli
     public void onTripSave() {
         Trip trip = new Trip();
         trip.trip_name = inputName.getText().toString();
-        trip.budget = Double.valueOf(inputBudget.getText().toString());
-        trip.start_date = inputStartDate.getText().toString();
-        trip.end_date = inputEndDate.getText().toString();
+        trip.trip_budget = Double.valueOf(inputBudget.getText().toString());
+        trip.trip_start_date = inputStartDate.getText().toString();
+        trip.trip_end_date = inputEndDate.getText().toString();
         tripsService.createTrip(trip);
+        this.finish();
     }
 
 }

@@ -3,6 +3,8 @@ package com.digiview.gabay.ui.trips;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,19 +12,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.digiview.gabay.R;
+import com.digiview.gabay.domain.entities.Trip;
+import com.digiview.gabay.services.FirebaseChildEventListenerCallback;
+import com.digiview.gabay.services.TripsService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TripsFragment extends Fragment {
 
     // Pass the model
     // ArrayList<TripModel> tripModels = new ArrayList();
     private RecyclerView recyclerView;
-    //private TripsAdapter tripsAdapter;
-    //private List<TripModel> tripModels;
+    private TripsAdapter tripsAdapter;
+    private List<Trip> trips;
+    private TripsService tripsService;
 
     public TripsFragment(){
         // require a empty public constructor
@@ -36,12 +46,18 @@ public class TripsFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.Trips_RecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        //setupModels
-//        tripModels = new ArrayList<>();
-//        tripsAdapter = new TripsAdapter(tripModels);
-//        recyclerView.setAdapter(tripsAdapter);
 
-        // fetchTripsFromFirebase();
+        //setupModels
+
+        trips = new ArrayList<>();
+        tripsAdapter = new TripsAdapter(trips);
+
+        //initialize service
+        tripsService = TripsService.getInstance();
+        addFirebaseChildListener();
+
+        recyclerView.setAdapter(tripsAdapter);
+
 
         return view;
     }
@@ -69,20 +85,45 @@ public class TripsFragment extends Fragment {
         fab.hide(); // Hide the FAB when the fragment is not visible
     }
 
-//    private void fetchTripsFromFirebase() {
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        db.collection("trips")
-//                .get()
-//                .addOnCompleteListener(task -> {
-//                    if (task.isSuccessful()) {
-//                        for (DocumentSnapshot document : task.getResult()) {
-//                            TripModel trip = document.toObject(TripModel.class);
-//                            tripModels.add(trip);
-//                        }
-//                        tripsAdapter.notifyDataSetChanged();
-//                    } else {
-//                        // Handle the error
-//                    }
-//                });
-//    }
+    //
+    private void addFirebaseChildListener() {
+        tripsService.addChildEventListener(new FirebaseChildEventListenerCallback<DataSnapshot>() {
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Trip trip = snapshot.getValue(Trip.class);
+                Toast.makeText(getActivity(), trip.trip_name, Toast.LENGTH_SHORT).show();
+                trips.add(0, trip);
+                tripsAdapter.notifyItemInserted(0);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                int index = -1;
+                for (int i = 0; i < trips.size(); i++) {
+                    if (trips.get(i).trip_id.equals(snapshot.getKey())) {
+                        index = i;
+                        break;
+                    }
+                }
+                if (index !=-1) {
+                    trips.remove(index);
+                    tripsAdapter.notifyItemRemoved(index);
+                }
+            }
+        });
+    }
 }
