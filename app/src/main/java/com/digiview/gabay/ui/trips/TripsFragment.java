@@ -12,12 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.digiview.gabay.R;
 import com.digiview.gabay.domain.entities.Trip;
 import com.digiview.gabay.services.FirebaseChildEventListenerCallback;
-import com.digiview.gabay.services.TripsService;
+import com.digiview.gabay.services.TripService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,7 +31,7 @@ public class TripsFragment extends Fragment {
     private RecyclerView recyclerView;
     private TripsAdapter tripsAdapter;
     private List<Trip> trips;
-    private TripsService tripsService;
+    private TripService tripService;
 
     public TripsFragment(){
         // require a empty public constructor
@@ -52,7 +51,7 @@ public class TripsFragment extends Fragment {
         tripsAdapter = new TripsAdapter(trips);
 
         //initialize service
-        tripsService = TripsService.getInstance();
+        tripService = TripService.getInstance();
         addFirebaseChildListener();
 
 
@@ -105,7 +104,7 @@ public class TripsFragment extends Fragment {
 
     //
     private void addFirebaseChildListener() {
-        tripsService.addChildEventListener(new FirebaseChildEventListenerCallback<DataSnapshot>() {
+        tripService.addChildEventListener(new FirebaseChildEventListenerCallback<DataSnapshot>() {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -114,18 +113,25 @@ public class TripsFragment extends Fragment {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Trip trip = snapshot.getValue(Trip.class);
-                Toast.makeText(getActivity(), trip.trip_name, Toast.LENGTH_SHORT).show();
                 trips.add(0, trip);
                 tripsAdapter.notifyItemInserted(0);
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Trip trip = snapshot.getValue(Trip.class);
+                for (int i = 0; i < trips.size(); i++) {
+                    if(trips.get(i).trip_id.equals(snapshot.getKey())) {
+                        trips.set(i, trip);
+                        tripsAdapter.notifyItemChanged(i);
+                        break;
+                    }
+                }
             }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+                //not needed
             }
 
             @Override

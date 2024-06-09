@@ -9,7 +9,6 @@ import android.view.WindowInsetsController;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +17,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.digiview.gabay.domain.entities.Trip;
-import com.digiview.gabay.services.TripsService;
+import com.digiview.gabay.services.TripService;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
@@ -38,7 +37,7 @@ public class CreateTripActivity extends AppCompatActivity implements  View.OnCli
     private EditText inputStartDate;
     private EditText inputEndDate;
     private Button saveButton;
-    private TripsService tripsService;
+    private TripService tripService;
 
     //ANDROID LIFECYCLE OVERRIDES
     @Override
@@ -54,7 +53,7 @@ public class CreateTripActivity extends AppCompatActivity implements  View.OnCli
 
         modifyActionBar();
 
-        tripsService = TripsService.getInstance();
+        tripService = TripService.getInstance();
 
         // Add DatePicker upon clicking on date input
         inputName = findViewById(R.id.CreateTrip_InputTripName);
@@ -77,6 +76,7 @@ public class CreateTripActivity extends AppCompatActivity implements  View.OnCli
         int currentID = v.getId();
         if (currentID == R.id.button_CreateTrip) {
             onTripSave();
+            this.finish();
         }
     }
 
@@ -150,8 +150,7 @@ public class CreateTripActivity extends AppCompatActivity implements  View.OnCli
         trip.trip_budget = Double.valueOf(inputBudget.getText().toString());
         trip.trip_start_date = inputStartDate.getText().toString();
         trip.trip_end_date = inputEndDate.getText().toString();
-        tripsService.createTrip(trip);
-        this.finish();
+        tripService.createTrip(trip);
     }
 
 }
