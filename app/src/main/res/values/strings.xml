@@ -3,4 +3,82 @@
     <string name="web_client_id_default">562840164924-e9nitg0grgf9vt21a3qsnacg04ke1etl.apps.googleusercontent.com</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="our_purpose">
+        Gabay is designed to revolutionize the way you\n
+        manage your travel expenses. Whether you\'re\n
+        planning a weekend getaway or a long-term\n
+        adventure, our app helps you stay organized, on\n
+        budget, and focused on enjoying your journey.
+    </string>
+
+    <string name="our_mission">
+        At Gabay, our mission is to provide travelers with a\n
+        seamless and efficient way to track their expenses,\n
+        manage trips, and stay within budget. We believe\n
+        that financial clarity is key to a stress-free travel\n
+        experience, and we are committed to making that a\n
+        reality for our users.
+    </string>
+
+    <string name="motto">
+        <i>Your personal financial guide in \n every <b>“Gastos sa Paglalakbay”</b></i>
+    </string>
+
+    <string name="feature1">
+        Gabay is designed with simplicity in\n
+        mind, ensuring that users can easily\n
+        navigate through various features and\n
+        functionalities.
+    </string>
+
+    <string name="feature2">
+        Log your expenses effortlessly with\n
+        detailed descriptions, dates,\n
+        amounts, and categories\n
+    </string>
+
+    <string name="feature3">
+        Create and manage multiple trips,\n
+        each with its own budget and expense\n
+        tracking.
+    </string>
+    
+    <string name="feature4">
+        Personalize your expense categories\n
+        with custom names and icons for easy\n
+        identification
+    </string>
+
+    <string name="brand_statement_motto"><i><b>\"Travel Smart, Spend Smart with Gabay.\"</b></i></string>
+
+    <string name="brand_statement">
+        Gabay is more than just an app; it\'s a commitment to\n
+        helping you travel smarter. We strive to provide you\n
+        with the best tools to manage your expenses, so you\n
+        can focus on what truly matters—the adventure.
+    </string>
+
+    <string name="meet_the_developers">
+        Our team consists of passionate developers,\n
+        designers, and travel enthusiasts dedicated to\n
+        making your travel experience as smooth as possible.\n
+        We continuously work on improving Gabay to meet\n
+        your needs and exceed your expectations.
+    </string>
+    
+    <string name="about_us_regards">
+        <b><i>“Thank you for choosing Gabay. Here\'s to stress-free travels and well-managed budgets!”</i></b>
+    </string>
+
+    <string name="footer">
+        Feel free to reach out to us with any questions or\n
+        feedback. Happy travels!
+    </string>
+
+    <string name="email">
+        gabaytravels@gmail.com
+    </string>
+
+
 </resources>

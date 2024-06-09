@@ -21,8 +21,8 @@ public class TripsFragment extends Fragment {
     // Pass the model
     // ArrayList<TripModel> tripModels = new ArrayList();
     private RecyclerView recyclerView;
-    private TripsAdapter tripsAdapter;
-    private List<TripModel> tripModels;
+    //private TripsAdapter tripsAdapter;
+    //private List<TripModel> tripModels;
 
     public TripsFragment(){
         // require a empty public constructor
@@ -37,9 +37,9 @@ public class TripsFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.Trips_RecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         //setupModels
-        tripModels = new ArrayList<>();
-        tripsAdapter = new TripsAdapter(tripModels);
-        recyclerView.setAdapter(tripsAdapter);
+//        tripModels = new ArrayList<>();
+//        tripsAdapter = new TripsAdapter(tripModels);
+//        recyclerView.setAdapter(tripsAdapter);
 
         // fetchTripsFromFirebase();
 

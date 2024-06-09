@@ -19,6 +19,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.digiview.gabay.ui.auth.LoginActivity;
+import com.digiview.gabay.ui.settings.AboutUsActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.button.MaterialButton;
@@ -96,7 +97,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.buttonAbout) {
-            Intent intent = new Intent();
+            Intent intent = new Intent(SettingActivity.this, AboutUsActivity.class);
+            startActivity(intent);
         } else if (v.getId() == R.id.buttonHelp) {
             Intent intent = new Intent();
         } else if (v.getId() == R.id.buttonLogout) {

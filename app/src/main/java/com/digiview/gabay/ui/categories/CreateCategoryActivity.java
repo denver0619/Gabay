@@ -11,6 +11,7 @@ import android.view.WindowInsetsController;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.content.res.TypedArray;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -77,40 +78,18 @@ public class CreateCategoryActivity extends AppCompatActivity {
 
     private List<Icon> generateDummyIcons() {
         List<Icon> iconList = new ArrayList<>();
-        // Add your icon resources here
-        iconList.add(new Icon(R.drawable.ic_accomodation_101));
-        iconList.add(new Icon(R.drawable.ic_accomodation_102));
-        iconList.add(new Icon(R.drawable.ic_accomodation_103));
-        iconList.add(new Icon(R.drawable.ic_accomodation_104));
-        iconList.add(new Icon(R.drawable.ic_accomodation_105));
+        TypedArray iconsArray = getResources().obtainTypedArray(R.array.icon_resources);
 
-        iconList.add(new Icon(R.drawable.ic_attraction_101));
-        iconList.add(new Icon(R.drawable.ic_attraction_102));
-        iconList.add(new Icon(R.drawable.ic_attraction_103));
-        iconList.add(new Icon(R.drawable.ic_attraction_104));
-        iconList.add(new Icon(R.drawable.ic_attraction_105));
+        for (int i = 0; i < iconsArray.length(); i++) {
+            int iconResource = iconsArray.getResourceId(i, -1);
+            if (iconResource != -1) {
+                iconList.add(new Icon(iconResource));
+            }
+        }
+        iconsArray.recycle();  // Clean up the TypedArray to avoid memory leaks
 
-        iconList.add(new Icon(R.drawable.ic_clothes_101));
-        iconList.add(new Icon(R.drawable.ic_clothes_102));
-        iconList.add(new Icon(R.drawable.ic_clothes_103));
-        iconList.add(new Icon(R.drawable.ic_clothes_104));
-        iconList.add(new Icon(R.drawable.ic_clothes_105));
-
-        iconList.add(new Icon(R.drawable.ic_food_101));
-        iconList.add(new Icon(R.drawable.ic_food_102));
-        iconList.add(new Icon(R.drawable.ic_food_103));
-        iconList.add(new Icon(R.drawable.ic_food_104));
-        iconList.add(new Icon(R.drawable.ic_food_105));
-
-        iconList.add(new Icon(R.drawable.ic_transportation_101));
-        iconList.add(new Icon(R.drawable.ic_transportation_102));
-        iconList.add(new Icon(R.drawable.ic_transportation_103));
-        iconList.add(new Icon(R.drawable.ic_transportation_104));
-        iconList.add(new Icon(R.drawable.ic_transportation_105));
-
-
-        // Add more icons as needed
         return iconList;
+
     }
 
     private void modifyActionBar() {
