@@ -2,22 +2,17 @@ package com.digiview.gabay;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.digiview.gabay.databinding.ActivityMainBinding;
 import com.digiview.gabay.ui.categories.CategoriesFragment;
+import com.digiview.gabay.ui.settings.SettingActivity;
 import com.digiview.gabay.ui.spending.SpendingFragment;
 import com.digiview.gabay.ui.trips.TripsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

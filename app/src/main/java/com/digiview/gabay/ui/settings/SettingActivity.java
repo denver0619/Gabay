@@ -1,4 +1,4 @@
-package com.digiview.gabay;
+package com.digiview.gabay.ui.settings;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowInsetsController;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -18,8 +17,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.digiview.gabay.R;
 import com.digiview.gabay.ui.auth.LoginActivity;
-import com.digiview.gabay.ui.settings.AboutUsActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.button.MaterialButton;

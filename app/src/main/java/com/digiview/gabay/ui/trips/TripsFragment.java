@@ -44,7 +44,7 @@ public class TripsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_trips, container, false);
 
-        RecyclerView recyclerView = view.findViewById(R.id.Trips_RecyclerView);
+        recyclerView = view.findViewById(R.id.Trips_RecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //setupModels

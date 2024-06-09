@@ -17,7 +17,7 @@
             android:exported="false"
             android:label="About Us"/>
         <activity
-            android:name=".SettingActivity"
+            android:name=".ui.settings.SettingActivity"
             android:exported="false"
             android:label="Settings" />
         <activity
