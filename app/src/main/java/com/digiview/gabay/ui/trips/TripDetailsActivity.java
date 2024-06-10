@@ -34,22 +34,21 @@ public class TripDetailsActivity extends AppCompatActivity {
 
 
 
-        tripDetailsTitle = findViewById(R.id.TripDetails_TripName);
-        tripDetailsDate = findViewById(R.id.TripDetails_TripDate);
+
+
 
         Intent intent = getIntent();
         // Check if extras are present
         if (intent != null && intent.getExtras() != null) {
             // Retrieve the trip name from the extras using getStringExtra()
             String tripName = intent.getStringExtra("TRIP_NAME");
-            String tripDate = intent.getStringExtra("TRIP_DATE");
+
 
             // Set Label
             setTitle(tripName);
 
             // Set the trip name to the TextView
-            tripDetailsTitle.setText(tripName);
-            tripDetailsDate.setText(tripDate);
+
 
         }
 
