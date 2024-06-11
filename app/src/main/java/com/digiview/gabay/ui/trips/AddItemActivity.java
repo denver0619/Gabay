@@ -1,15 +1,12 @@
 package com.digiview.gabay.ui.trips;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowInsetsController;
 import android.view.WindowManager;
-import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,31 +15,56 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.digiview.gabay.R;
+import com.digiview.gabay.domain.entities.Category;
+import com.digiview.gabay.ui.categories.CustomCategorySpinnerAdapter;
 
-public class TripDetailsActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
+public class AddItemActivity extends AppCompatActivity {
+
+    private Spinner categorySpinner;
+    private CustomCategorySpinnerAdapter adapter;
+    private List<Category> categories;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_trip_details);
+        setContentView(R.layout.activity_add_item);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        Intent intent = getIntent();
-        String tripID = intent.getStringExtra("TRIP_ID");
+        categorySpinner = findViewById(R.id.AddItem_Category);
 
-        populateActivityWithPassedData();
+        // Initialize categories
+        categories = new ArrayList<>();
 
-        redirectToAddItem(tripID);
+        // Insert way to access category from db
 
-        modifyActionBar();
+            // categories.add(new Category("Food", R.drawable.food_icon));
+            // categories.add(new Category("Travel", R.drawable.travel_icon));
+            // categories.add(new Category("Shopping", R.drawable.shopping_icon));
 
+
+        // Set up adapter
+        // adapter = new CustomCategorySpinnerAdapter(this, categories);
+        // categorySpinner.setAdapter(adapter);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // Handle the close button click
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //CUSTOM FUNCTIONS/METHODS
     private void modifyActionBar() {
         // Set the status bar color programmatically
         Window window = getWindow();
@@ -63,54 +85,13 @@ public class TripDetailsActivity extends AppCompatActivity {
         // Enable the action bar and set the close button
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back); // Ensure you have an ic_close drawable
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close); // Ensure you have an ic_close drawable
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-        });
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            // Handle the back button click
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void populateActivityWithPassedData() {
-        Intent intent = getIntent();
-        // Check if extras are present
-        if (intent != null && intent.getExtras() != null) {
-            // Retrieve the trip name from the extras using getStringExtra()
-            String tripName = intent.getStringExtra("TRIP_NAME");
-            Double tripBudget = intent.getDoubleExtra("TRIP_BUDGET", 0.00);
-            String formattedBudget = String.format("%,.2f", tripBudget);
-
-            // Set Label
-            setTitle(tripName);
-
-            // Set the trip name to the TextView
-            TextView textViewTripBudget = findViewById(R.id.TripDetails_Budget);
-            textViewTripBudget.setText(String.format("₱ %s", formattedBudget));
-
-        }
-    }
-
-    private void redirectToAddItem (String tripID) {
-        ImageButton addItemButton = findViewById(R.id.TripDetails_Button_AddItem);
-
-        addItemButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent redirectIntent = new Intent(TripDetailsActivity.this, AddItemActivity.class);
-                redirectIntent.putExtra("TRIP_ID", tripID);
-                startActivity(redirectIntent);
-            }
         });
     }
 }

@@ -14,6 +14,7 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:padding="24dp"
+       android:layout_marginTop="16dp"
        android:orientation="vertical">
 
        <LinearLayout
@@ -174,7 +175,7 @@
                    />
 
                <ImageButton
-                   android:id="@+id/button_AddItem"
+                   android:id="@+id/TripDetails_Button_AddItem"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center"
