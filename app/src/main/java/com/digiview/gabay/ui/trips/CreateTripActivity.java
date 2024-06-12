@@ -148,8 +148,7 @@ public class CreateTripActivity extends AppCompatActivity implements  View.OnCli
         Trip trip = new Trip();
         trip.trip_name = inputName.getText().toString();
         trip.trip_budget = Double.valueOf(inputBudget.getText().toString());
-        trip.trip_start_date = inputStartDate.getText().toString();
-        trip.trip_end_date = inputEndDate.getText().toString();
+        trip.trip_date = inputStartDate.getText().toString();
         tripService.createTrip(trip);
     }
 

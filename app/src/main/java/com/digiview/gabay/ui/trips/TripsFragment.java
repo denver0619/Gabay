@@ -135,7 +135,7 @@ public class TripsFragment extends Fragment implements TripInterface{
 
         intent.putExtra("TRIP_ID", trips.get(position).trip_id);
         intent.putExtra("TRIP_NAME", trips.get(position).trip_name);
-        intent.putExtra("TRIP_DATE", trips.get(position).trip_start_date);
+        intent.putExtra("TRIP_DATE", trips.get(position).trip_date);
         intent.putExtra("TRIP_BUDGET", trips.get(position).trip_budget);
 
 
