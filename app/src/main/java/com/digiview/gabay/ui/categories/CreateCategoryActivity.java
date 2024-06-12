@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowInsetsController;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Button;
 import android.content.res.TypedArray;
 
 import androidx.activity.EdgeToEdge;
@@ -22,18 +24,25 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.digiview.gabay.R;
+import com.digiview.gabay.domain.entities.Category;
+import com.digiview.gabay.services.CategoryService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class CreateCategoryActivity extends AppCompatActivity {
+public class CreateCategoryActivity extends AppCompatActivity implements View.OnClickListener{
 
 
     private RecyclerView iconRecyclerView;
     private TextView selectedIconTextView;
     private IconAdapter adapter;
+
+    private CategoryService categoryService;
     private ImageView outputIcon;
+    private EditText categoryName;
+
+    private Button saveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +57,19 @@ public class CreateCategoryActivity extends AppCompatActivity {
 
         modifyActionBar();
 
+        categoryService = CategoryService.getInstance();
+
 
         iconRecyclerView = findViewById(R.id.iconRecyclerView);
-        selectedIconTextView = findViewById(R.id.selectedIconTextView); // Initialize the TextView
         iconRecyclerView.setLayoutManager(new GridLayoutManager(this, 5));
+
         outputIcon = findViewById(R.id.outputIcon);
+
+        categoryName = findViewById(R.id.CreateCategory_InputCategoryName);
+        selectedIconTextView = findViewById(R.id.selectedIconTextView); // Initialize the TextView
+
+        saveButton = findViewById(R.id.button_CreateCategory);
+
 
 
         List<Icon> iconList = generateDummyIcons();
@@ -61,7 +78,7 @@ public class CreateCategoryActivity extends AppCompatActivity {
             public void onItemClick(int iconId) {
                 // Update the TextView with the ID of the selected icon
                 selectedIconTextView.setVisibility(View.VISIBLE);
-                selectedIconTextView.setText("Selected Icon ID: " + iconId);
+                selectedIconTextView.setText(String.valueOf(iconId));
 
 
                 outputIcon.setImageResource(iconId);
@@ -72,7 +89,7 @@ public class CreateCategoryActivity extends AppCompatActivity {
         });
         iconRecyclerView.setAdapter(adapter);
 
-
+        saveButton.setOnClickListener(this);
 
     }
 
@@ -130,6 +147,23 @@ public class CreateCategoryActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        int currentID = v.getId();
+        if (currentID == R.id.button_CreateCategory) {
+            onCategorySave();
+            this.finish();
+        }
+    }
+
+    private void onCategorySave() {
+        Category category = new Category();
+        category.category_name = categoryName.getText().toString();
+        category.category_icon = Integer.parseInt(selectedIconTextView.getText().toString());
+        categoryService.createCategory(category);
     }
 
 
