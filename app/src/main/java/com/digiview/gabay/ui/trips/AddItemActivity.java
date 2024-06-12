@@ -44,14 +44,15 @@ public class AddItemActivity extends AppCompatActivity {
 
         // Insert way to access category from db
 
-            // categories.add(new Category("Food", R.drawable.food_icon));
-            // categories.add(new Category("Travel", R.drawable.travel_icon));
-            // categories.add(new Category("Shopping", R.drawable.shopping_icon));
+//             categories.add(new Category("Food", R.drawable.ic_accomodation_101));
+//             categories.add(new Category("Travel", R.drawable.ic_accomodation_101));
+//             categories.add(new Category("Shopping", R.drawable.ic_accomodation_101));
 
 
         // Set up adapter
-        // adapter = new CustomCategorySpinnerAdapter(this, categories);
-        // categorySpinner.setAdapter(adapter);
+         adapter = new CustomCategorySpinnerAdapter(this, categories);
+         categorySpinner.setAdapter(adapter);
+        modifyActionBar();
     }
 
     @Override
