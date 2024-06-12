@@ -39,7 +39,7 @@ class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.TripViewHolder> {
         // Assigning values to the views created in recycler row layout based on the position of recycler view
         Trip trip = tripList.get(position);
         holder.tripName.setText(trip.trip_name);
-        holder.tripDate.setText(trip.trip_start_date);
+        holder.tripDate.setText(trip.trip_date);
     }
 
     @Override
