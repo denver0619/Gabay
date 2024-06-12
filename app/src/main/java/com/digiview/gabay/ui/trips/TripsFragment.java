@@ -12,26 +12,29 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.digiview.gabay.MainActivity;
 import com.digiview.gabay.R;
 import com.digiview.gabay.domain.entities.Trip;
 import com.digiview.gabay.services.FirebaseChildEventListenerCallback;
-import com.digiview.gabay.services.TripService;
+import com.digiview.gabay.services.TripsService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class TripsFragment extends Fragment {
+public class TripsFragment extends Fragment implements TripInterface{
 
     // Pass the model
     // ArrayList<TripModel> tripModels = new ArrayList();
     private RecyclerView recyclerView;
     private TripsAdapter tripsAdapter;
     private List<Trip> trips;
-    private TripService tripService;
+    private TripsService tripsService;
 
     public TripsFragment(){
         // require a empty public constructor
@@ -43,21 +46,20 @@ public class TripsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_trips, container, false);
 
-        RecyclerView recyclerView = view.findViewById(R.id.Trips_RecyclerView);
+        recyclerView = view.findViewById(R.id.Trips_RecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //setupModels
+
         trips = new ArrayList<>();
-        tripsAdapter = new TripsAdapter(trips);
+        tripsAdapter = new TripsAdapter(getContext(), trips, this);
 
         //initialize service
-        tripService = TripService.getInstance();
+        tripsService = TripsService.getInstance();
         addFirebaseChildListener();
-
 
         recyclerView.setAdapter(tripsAdapter);
 
-        // fetchTripsFromFirebase();
 
         return view;
     }
@@ -85,26 +87,9 @@ public class TripsFragment extends Fragment {
         fab.hide(); // Hide the FAB when the fragment is not visible
     }
 
-//    private void fetchTripsFromFirebase() {
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        db.collection("trips")
-//                .get()
-//                .addOnCompleteListener(task -> {
-//                    if (task.isSuccessful()) {
-//                        for (DocumentSnapshot document : task.getResult()) {
-//                            TripModel trip = document.toObject(TripModel.class);
-//                            tripModels.add(trip);
-//                        }
-//                        tripsAdapter.notifyDataSetChanged();
-//                    } else {
-//                        // Handle the error
-//                    }
-//                });
-//    }
-
     //
     private void addFirebaseChildListener() {
-        tripService.addChildEventListener(new FirebaseChildEventListenerCallback<DataSnapshot>() {
+        tripsService.addChildEventListener(new FirebaseChildEventListenerCallback<DataSnapshot>() {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -113,25 +98,18 @@ public class TripsFragment extends Fragment {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Trip trip = snapshot.getValue(Trip.class);
+                // Toast.makeText(getActivity(), trip.trip_name, Toast.LENGTH_SHORT).show();
                 trips.add(0, trip);
                 tripsAdapter.notifyItemInserted(0);
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Trip trip = snapshot.getValue(Trip.class);
-                for (int i = 0; i < trips.size(); i++) {
-                    if(trips.get(i).trip_id.equals(snapshot.getKey())) {
-                        trips.set(i, trip);
-                        tripsAdapter.notifyItemChanged(i);
-                        break;
-                    }
-                }
             }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                //not needed
+
             }
 
             @Override
@@ -149,5 +127,19 @@ public class TripsFragment extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(requireContext(), TripDetailsActivity.class);
+
+        intent.putExtra("TRIP_ID", trips.get(position).trip_id);
+        intent.putExtra("TRIP_NAME", trips.get(position).trip_name);
+        intent.putExtra("TRIP_DATE", trips.get(position).trip_start_date);
+        intent.putExtra("TRIP_BUDGET", trips.get(position).trip_budget);
+
+
+        startActivity(intent);
+
     }
 }

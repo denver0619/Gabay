@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="icon_resources">
+        <item>@drawable/ic_accomodation_101</item>
+        <item>@drawable/ic_accomodation_102</item>
+        <item>@drawable/ic_accomodation_103</item>
+        <item>@drawable/ic_accomodation_104</item>
+        <item>@drawable/ic_accomodation_105</item>
+
+        <item>@drawable/ic_attraction_101</item>
+        <item>@drawable/ic_attraction_102</item>
+        <item>@drawable/ic_attraction_103</item>
+        <item>@drawable/ic_attraction_104</item>
+        <item>@drawable/ic_attraction_105</item>
+
+        <item>@drawable/ic_clothes_101</item>
+        <item>@drawable/ic_clothes_102</item>
+        <item>@drawable/ic_clothes_103</item>
+        <item>@drawable/ic_clothes_104</item>
+        <item>@drawable/ic_clothes_105</item>
+
+        <item>@drawable/ic_food_101</item>
+        <item>@drawable/ic_food_102</item>
+        <item>@drawable/ic_food_103</item>
+        <item>@drawable/ic_food_104</item>
+        <item>@drawable/ic_food_105</item>
+
+        <item>@drawable/ic_transportation_101</item>
+        <item>@drawable/ic_transportation_102</item>
+        <item>@drawable/ic_transportation_103</item>
+        <item>@drawable/ic_transportation_104</item>
+        <item>@drawable/ic_transportation_105</item>
+    </array>
+
+</resources>

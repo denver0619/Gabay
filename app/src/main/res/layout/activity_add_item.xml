@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.trips.CreateTripActivity"
+    tools:context=".ui.trips.AddItemActivity"
     android:background="@color/gray"
     android:fitsSystemWindows="true">
 
@@ -25,12 +25,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Trip Name"
+            android:text="Item Name"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginBottom="12dp"
-            android:labelFor="@id/CreateTrip_InputTripName"/>
+            android:labelFor="@id/AddItem_InputItemName"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,7 +44,7 @@
             android:layout_marginBottom="24dp">
 
             <EditText
-                android:id="@+id/CreateTrip_InputTripName"
+                android:id="@+id/AddItem_InputItemName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -57,12 +57,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Budget"
+            android:text="Cost"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginBottom="12dp"
-            android:labelFor="@id/CreateTrip_InputBudget"/>
+            android:labelFor="@id/AddItem_InputItemCost"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,7 +76,7 @@
             android:layout_marginBottom="24dp">
 
             <EditText
-                android:id="@+id/CreateTrip_InputBudget"
+                android:id="@+id/AddItem_InputItemCost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -88,12 +88,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start Date"
+            android:text="Select Category"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginBottom="12dp"
-            android:labelFor="@id/CreateTrip_InputStartDate"/>
+            android:labelFor="@id/AddItem_Category"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -106,60 +106,15 @@
             android:paddingLeft="18dp"
             android:layout_marginBottom="24dp">
 
-            <EditText
-                android:id="@+id/CreateTrip_InputStartDate"
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/AddItem_Category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:background="@drawable/input_underline_state"
-                android:focusable="false"
-                android:cursorVisible="false"
-                android:inputType="date"
-                />
+                android:inputType="numberDecimal"/>
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="End Date"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginBottom="12dp"
-            android:labelFor="@id/CreateTrip_InputEndDate"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/input_container"
-            android:orientation="vertical"
-            android:paddingTop="14dp"
-            android:paddingRight="18dp"
-            android:paddingBottom="14dp"
-            android:paddingLeft="18dp"
-            android:layout_marginBottom="24dp">
-
-            <EditText
-                android:id="@+id/CreateTrip_InputEndDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:background="@drawable/input_underline_state"
-                android:focusable="false"
-                android:cursorVisible="false"
-                android:inputType="date"/>
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/button_CreateTrip"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="16dp"
-            android:text="Save"
-            android:textSize="16sp"
-            android:backgroundTint="@color/dark_blue"/>
 
     </LinearLayout>
 

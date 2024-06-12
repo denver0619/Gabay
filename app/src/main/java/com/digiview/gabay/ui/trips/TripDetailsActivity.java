@@ -1,94 +1,45 @@
-package com.digiview.gabay.ui.categories;
+package com.digiview.gabay.ui.trips;
 
-
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowInsetsController;
 import android.view.WindowManager;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.content.res.TypedArray;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.digiview.gabay.R;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-public class CreateCategoryActivity extends AppCompatActivity {
-
-
-    private RecyclerView iconRecyclerView;
-    private TextView selectedIconTextView;
-    private IconAdapter adapter;
-    private ImageView outputIcon;
+public class TripDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_create_category);
+        setContentView(R.layout.activity_trip_details);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+        Intent intent = getIntent();
+        String tripID = intent.getStringExtra("TRIP_ID");
+
+        populateActivityWithPassedData();
+
+        redirectToAddItem(tripID);
+
         modifyActionBar();
-
-
-        iconRecyclerView = findViewById(R.id.iconRecyclerView);
-        selectedIconTextView = findViewById(R.id.selectedIconTextView); // Initialize the TextView
-        iconRecyclerView.setLayoutManager(new GridLayoutManager(this, 5));
-        outputIcon = findViewById(R.id.outputIcon);
-
-
-        List<Icon> iconList = generateDummyIcons();
-        adapter = new IconAdapter(iconList, new IconAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int iconId) {
-                // Update the TextView with the ID of the selected icon
-                selectedIconTextView.setVisibility(View.VISIBLE);
-                selectedIconTextView.setText("Selected Icon ID: " + iconId);
-
-
-                outputIcon.setImageResource(iconId);
-
-                // Insert Action Upon Item Click
-
-            }
-        });
-        iconRecyclerView.setAdapter(adapter);
-
-
-
-    }
-
-    private List<Icon> generateDummyIcons() {
-        List<Icon> iconList = new ArrayList<>();
-        TypedArray iconsArray = getResources().obtainTypedArray(R.array.icon_resources);
-
-        for (int i = 0; i < iconsArray.length(); i++) {
-            int iconResource = iconsArray.getResourceId(i, -1);
-            if (iconResource != -1) {
-                iconList.add(new Icon(iconResource));
-            }
-        }
-        iconsArray.recycle();  // Clean up the TypedArray to avoid memory leaks
-
-        return iconList;
 
     }
 
@@ -112,7 +63,7 @@ public class CreateCategoryActivity extends AppCompatActivity {
         // Enable the action bar and set the close button
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close); // Ensure you have an ic_close drawable
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back); // Ensure you have an ic_close drawable
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -122,16 +73,44 @@ public class CreateCategoryActivity extends AppCompatActivity {
         });
     }
 
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            // Handle the close button click
+            // Handle the back button click
             finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    private void populateActivityWithPassedData() {
+        Intent intent = getIntent();
+        // Check if extras are present
+        if (intent != null && intent.getExtras() != null) {
+            // Retrieve the trip name from the extras using getStringExtra()
+            String tripName = intent.getStringExtra("TRIP_NAME");
+            Double tripBudget = intent.getDoubleExtra("TRIP_BUDGET", 0.00);
+            String formattedBudget = String.format("%,.2f", tripBudget);
 
+            // Set Label
+            setTitle(tripName);
+
+            // Set the trip name to the TextView
+            TextView textViewTripBudget = findViewById(R.id.TripDetails_Budget);
+            textViewTripBudget.setText(String.format("₱ %s", formattedBudget));
+
+        }
+    }
+
+    private void redirectToAddItem (String tripID) {
+        ImageButton addItemButton = findViewById(R.id.TripDetails_Button_AddItem);
+
+        addItemButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent redirectIntent = new Intent(TripDetailsActivity.this, AddItemActivity.class);
+                redirectIntent.putExtra("TRIP_ID", tripID);
+                startActivity(redirectIntent);
+            }
+        });
+    }
 }
-
