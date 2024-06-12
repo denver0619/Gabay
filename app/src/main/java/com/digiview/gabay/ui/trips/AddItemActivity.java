@@ -3,10 +3,14 @@ package com.digiview.gabay.ui.trips;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowInsetsController;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -59,6 +63,26 @@ public class AddItemActivity extends AppCompatActivity {
         adapter = new CustomCategorySpinnerAdapter(this, categories);
         categorySpinner.setAdapter(adapter);
         modifyActionBar();
+
+        // Assuming you have a button for adding an item
+        Button addButton = findViewById(R.id.AddItem_Button_AddItem); // Ensure you have this button in your layout
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Category selectedCategory = (Category) categorySpinner.getSelectedItem();
+                if (selectedCategory != null) {
+                    TextView tv = findViewById(R.id.selectedIconTextView);
+                    ImageView iv = findViewById(R.id.selectedIconImageView);
+
+                    tv.setText(selectedCategory.category_icon);
+                    iv.setImageResource(selectedCategory.category_icon);
+
+                    // Now you can use the categoryId as needed
+                    // For example, create an item with the selected category
+
+                }
+            }
+        });
     }
 
 
