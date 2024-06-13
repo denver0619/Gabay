@@ -99,7 +99,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             Intent intent = new Intent(SettingActivity.this, AboutUsActivity.class);
             startActivity(intent);
         } else if (v.getId() == R.id.buttonHelp) {
-            Intent intent = new Intent();
+            Intent intent = new Intent(SettingActivity.this, HelpActivity.class);
+            startActivity(intent);
         } else if (v.getId() == R.id.buttonLogout) {
             showLogoutConfirmationDialog();
         }

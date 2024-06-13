@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Gabay</string>
     <string name="web_client_id_default">562840164924-e9nitg0grgf9vt21a3qsnacg04ke1etl.apps.googleusercontent.com</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
     <string name="our_purpose">
         Gabay is designed to revolutionize the way you\n
@@ -22,7 +21,7 @@
     </string>
 
     <string name="motto">
-        <i>Your personal financial guide in \n every <b>“Gastos sa Paglalakbay”</b></i>
+        <i>Your personal financial guide in\n every <b>“Gastos sa Paglalakbay”</b></i>
     </string>
 
     <string name="feature1">
@@ -80,5 +79,63 @@
         gabaytravels@gmail.com
     </string>
 
+    <string name="help_loginsignup">
+        Log in to your Gabay account using your email and\npassword or you can log in using your Google Account.\nIf you\'re new to Gabay, sign up for an account by providing\nyour email and creating a password.
+    </string>
+
+    <string name="help_enter_your_spending">
+        Log all expenses from your trips to ensure comprehensive\nfinancial records. You can enter your expenses from the trip\nform by clicking the floating add button to add an expense.
+    </string>
+
+    <string name="help_track_your_spending">
+        Monitor your expenses with the spending feature, which\noffers an overview of your current spending status.\nThis includes a list of your recent expenses and the total\nexpenses recorded from your initial log to the most recent\none.
+    </string>
+
+    <string name="help_spending">
+        Within this category, you can view both your most recent\nspending activities as well as the cumulative total of all your\nexpenses.
+    </string>
+
+    <string name="help_expense">
+        Expense transactions entail recording all financial outlays\nassociated with your trips.
+    </string>
+
+    <string name="help_total_expense">
+        Expense transactions entail recording all financial outlays\nassociated with your trips.
+    </string>
+
+    <string name="help_budget">
+        Your budget sets a spending limit for each trip,\nhelping you manage expenses effectively.\nThis feature promotes financial discipline and ensures a\nmore organized and responsible travel experience.</string>
+
+    <string name="help_remaining_balance">
+        It refers to the amount of money left from your budget after\ndeducting your total expenses.
+    </string>
+
+    <string name="help_trips">
+        This screen allows you to access all your trips, where you\ncan easily add new ones or modify and remove existing\nones as needed.
+    </string>
+
+    <string name="help_adding_trip">
+        To add a new trip, simply click on the floating add button\nlocated at the lower right corner of your screen.\nAlternatively, tap on an existing trip to make edits.\nYou\'ll be prompted to input essential information to\ncreate a new trip.
+    </string>
+
+    <string name="help_start_date">
+        The date on which the Trip started.
+    </string>
+
+    <string name="help_end_date">
+        The date on which the Trip ended.
+    </string>
+
+    <string name="help_adding_item">
+        To add an item to your trips, simply provide the necessary\ninformation when creating it. This includes details such as\nthe item name, amount, category, and date.
+    </string>
+
+    <string name="help_select_category">
+        You can choose a category from the ones you\'ve created or\nfrom the pre-existing categories.
+    </string>
+
+    <string name="help_categories">
+        These are labels users assign to expenses for classification.\nYou can create custom categories or choose from\npredefined ones covering common expense types like\ntransportation and accommodation. You can edit or create\nnew categories as needed. When adding expenses,\nyou can select the appropriate category for accurate tracking\nand analysis.
+    </string>
 
 </resources>

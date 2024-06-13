@@ -48,8 +48,6 @@ public class AddItemActivity extends AppCompatActivity {
             return insets;
         });
 
-        setTitle("Add Item");
-
         categorySpinner = findViewById(R.id.AddItem_Category);
 
         // Initialize categories

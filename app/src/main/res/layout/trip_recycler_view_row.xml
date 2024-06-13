@@ -48,8 +48,8 @@
 
         <ImageButton
             android:id="@+id/Trips_Kebab"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:background="@color/transparent"
             android:src="@drawable/ic_kebab" />
