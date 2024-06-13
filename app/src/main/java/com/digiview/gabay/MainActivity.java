@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity{
 
         // Add Logo to ActionBar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.ic_bus_solid);
+        getSupportActionBar().setIcon(R.drawable.gabay_logo);
         setContentView(R.layout.activity_main);
 
         // Set Bottom Navigation

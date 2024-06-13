@@ -35,7 +35,6 @@ public class AddItemActivity extends AppCompatActivity {
 
     private Spinner categorySpinner;
     private CustomCategorySpinnerAdapter adapter;
-
     private List<Category> categories;
     private CategoryService categoryService;
     @Override
@@ -48,6 +47,8 @@ public class AddItemActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        setTitle("Add Item");
 
         categorySpinner = findViewById(R.id.AddItem_Category);
 
@@ -62,6 +63,8 @@ public class AddItemActivity extends AppCompatActivity {
         // Set up adapter
         adapter = new CustomCategorySpinnerAdapter(this, categories);
         categorySpinner.setAdapter(adapter);
+
+
         modifyActionBar();
 
         // Assuming you have a button for adding an item

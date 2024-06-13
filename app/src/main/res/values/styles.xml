@@ -18,6 +18,12 @@
         <item name="buttonTint">@color/dark_blue</item>
     </style>
 
+    <style name="PopupMenuStyle" parent="@style/Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@color/white</item>
+
+        <!-- Add more customizations as needed -->
+    </style>
+
     <style name="YourPositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">@color/dark_gray</item>
     </style>
