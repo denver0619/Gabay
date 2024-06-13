@@ -3,6 +3,7 @@ package com.digiview.gabay.services;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.digiview.gabay.domain.entities.Item;
 import com.digiview.gabay.domain.entities.Trip;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,6 +22,8 @@ public final class TripService {
     private final FirebaseDatabase fbDB;
     private final DatabaseReference userDBRef;
 
+    private final ItemService itemService;
+
 
     //Initialize all the needed variables
     //the constructor is private because this is a singleton
@@ -34,6 +37,7 @@ public final class TripService {
         userDBRef = fbDB.getReference("trips/" + fbUser.getUid());
         //keeps all the contents in cache
         userDBRef.keepSynced(true);
+        itemService = ItemService.getInstance();
     }
 
     public static synchronized TripService getInstance() {
@@ -56,6 +60,7 @@ public final class TripService {
 
     public void deleteTrip(Trip trip) {
         DatabaseReference existingRef = userDBRef.child(trip.trip_id);
+        itemService.deleteAllItemWithTripID(trip.trip_id);
         existingRef.removeValue();
     }
 
