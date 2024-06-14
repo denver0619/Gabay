@@ -1,5 +1,7 @@
 package com.digiview.gabay.services;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -50,9 +52,12 @@ public class ItemService {
         DatabaseReference newRefLinear = userDBRef2.push();
         String newKey = newRefLinear.getKey();
         assert newKey != null;
+        item.item_id = newKey;
         DatabaseReference newRefItem = userDBRef.child(item.trip_id).child(newKey);
         newRefLinear.setValue(item);
         newRefItem.setValue(item);
+
+
     }
 
     public void editItem(Item item) {

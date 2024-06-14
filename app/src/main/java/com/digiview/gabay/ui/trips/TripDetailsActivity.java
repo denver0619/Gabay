@@ -1,8 +1,10 @@
 package com.digiview.gabay.ui.trips;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -10,10 +12,12 @@ import android.view.WindowInsetsController;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -50,32 +54,57 @@ public class TripDetailsActivity extends AppCompatActivity {
             return insets;
         });
 
-
+        Intent intent = getIntent();
+        tripID = intent.getStringExtra("TRIP_ID");
 
         populateActivityWithPassedData();
         redirectToAddItem(tripID);
         modifyActionBar();
 
-        Intent intent = getIntent();
-        tripID = intent.getStringExtra("TRIP_ID");
+
 
         RecyclerView recyclerView = findViewById(R.id.TripDetails_RecyclerView);
 
 
-        itemService = ItemService.getInstance();
-        itemsAdapter = new ItemsAdapter(tripItems, new ItemsAdapter.OnItemRemoveListener() {
 
+        itemService = ItemService.getInstance();
+
+        itemsAdapter = new ItemsAdapter(tripItems, new ItemsAdapter.OnItemRemoveListener() {
             @Override
             public void onItemRemove(int position) {
-                // Remove item from Firebase and update the list
-                Item item = tripItems.get(position);
-                itemService.deleteItem(item);
+                // Show confirmation Dialog
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(TripDetailsActivity.this, R.style.CustomAlertDialogTheme);
+                builder.setTitle("Are you sure you want to \n" +
+                        "delete this item?");
+                builder.setMessage("This will delete this item permanently. You cannot undo this action.");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Item item = tripItems.get(position);
+                        itemService.deleteItem(item);
+                    }
+                });
+                // Add the negative button (No)
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Dismiss the dialog if "No" is clicked
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
             }
         }, this);
 
+
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(itemsAdapter);
-        
+
         addFirebaseChildListener();
 
     }
@@ -108,7 +137,7 @@ public class TripDetailsActivity extends AppCompatActivity {
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
                 int index = -1;
                 for (int i = 0; i < tripItems.size(); i++) {
-                    if (tripItems.get(i).trip_id.equals(snapshot.getKey())) {
+                    if (tripItems.get(i).item_id.equals(snapshot.getKey())) {
                         index = i;
                         break;
                     }
@@ -117,6 +146,7 @@ public class TripDetailsActivity extends AppCompatActivity {
                     tripItems.remove(index);
                     itemsAdapter.notifyItemRemoved(index);
                 }
+
             }
         });
     }

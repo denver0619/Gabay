@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,7 @@ import com.digiview.gabay.R;
 import com.digiview.gabay.domain.entities.Category;
 import com.digiview.gabay.domain.entities.Item;
 import com.digiview.gabay.services.CategoryService;
+import com.digiview.gabay.services.ItemService;
 import com.digiview.gabay.services.FirebaseValueEventListenerCallback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,6 +29,7 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
     private List<Item> tripItems;
     private OnItemRemoveListener onItemRemoveListener;
     public CategoryService categoryService;
+    private ItemService itemService;
 
     public interface OnItemRemoveListener {
         void onItemRemove(int position);
@@ -36,6 +39,7 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
         this.tripItems = tripItems;
         this.onItemRemoveListener = onItemRemoveListener;
         this.context = context;
+        this.itemService = ItemService.getInstance();
 
         categoryService = CategoryService.getInstance();
 
@@ -68,6 +72,10 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
         holder.nameCategoryTextView.setText(tripItem.item_name);
         holder.costItemTextView.setText(String.format("₱ %.2f", tripItem.item_cost));
 
+        holder.removeButton.setOnClickListener(v -> {
+            // Perform deletion when remove button is clicked
+            onItemRemoveListener.onItemRemove(position);
+        });
 
     }
 
@@ -80,6 +88,8 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
         public ImageView iconCategoryImageView;
         public TextView nameCategoryTextView;
         public TextView costItemTextView;
+        public TextView itemIDDebug;
+
         public ImageButton removeButton;
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);

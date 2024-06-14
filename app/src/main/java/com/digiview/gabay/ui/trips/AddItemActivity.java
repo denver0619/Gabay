@@ -3,6 +3,7 @@ package com.digiview.gabay.ui.trips;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -55,6 +57,9 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        Intent intent = getIntent();
+        tripID = intent.getStringExtra("TRIP_ID");
 
         categorySpinner = findViewById(R.id.AddItem_Category);
 
@@ -105,7 +110,12 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
         item.item_cost = Double.valueOf(inputItemCost.getText().toString());
         item.category_id = selectedCategory.category_id;
         item.trip_id = tripID;
+
         ItemService.getInstance().createItem(item);
+
+
+
+
     }
 
 
