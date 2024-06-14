@@ -41,8 +41,6 @@ public class CategoriesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         View view = inflater.inflate(R.layout.fragment_categories, container, false);
 
         recyclerView = view.findViewById(R.id.Categories_RecyclerView);
@@ -63,7 +61,7 @@ public class CategoriesFragment extends Fragment {
     public void onResume() {
         super.onResume();
         FloatingActionButton fab = getActivity().findViewById(R.id.main_fab);
-        fab.show(); // Make the FAB visible
+        fab.show();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +77,7 @@ public class CategoriesFragment extends Fragment {
     public void onPause() {
         super.onPause();
         FloatingActionButton fab = getActivity().findViewById(R.id.main_fab);
-        fab.hide(); // Hide the FAB when the fragment is not visible
+        fab.hide();
     }
 
     private void addFirebaseChildListener() {

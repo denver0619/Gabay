@@ -15,7 +15,7 @@ import java.util.List;
 public class IconAdapter extends RecyclerView.Adapter<IconAdapter.IconViewHolder> {
 
     private List<Icon> iconList;
-    private int selectedPosition = RecyclerView.NO_POSITION; // Initially no item is selected
+    private int selectedPosition = RecyclerView.NO_POSITION;
     private OnItemClickListener listener;
 
     public interface OnItemClickListener {

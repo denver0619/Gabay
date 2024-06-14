@@ -21,7 +21,6 @@ public final class TripService {
     private final FirebaseUser fbUser;
     private final FirebaseDatabase fbDB;
     private final DatabaseReference userDBRef;
-
     private final ItemService itemService;
 
 

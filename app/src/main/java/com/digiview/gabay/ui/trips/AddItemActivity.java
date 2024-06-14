@@ -1,5 +1,6 @@
 package com.digiview.gabay.ui.trips;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -22,7 +23,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.digiview.gabay.R;
 import com.digiview.gabay.domain.entities.Category;
+import com.digiview.gabay.domain.entities.Item;
 import com.digiview.gabay.services.CategoryService;
+import com.digiview.gabay.services.ItemService;
 import com.digiview.gabay.ui.categories.CustomCategorySpinnerAdapter;
 import com.digiview.gabay.services.FirebaseChildEventListenerCallback;
 import com.google.firebase.database.DataSnapshot;
@@ -31,12 +34,17 @@ import com.google.firebase.database.DatabaseError;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddItemActivity extends AppCompatActivity {
+public class AddItemActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Spinner categorySpinner;
     private CustomCategorySpinnerAdapter adapter;
     private List<Category> categories;
     private CategoryService categoryService;
+    private TextView inputItemName;
+    private TextView inputItemCost;
+    private Button addButton;
+    String tripID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +61,6 @@ public class AddItemActivity extends AppCompatActivity {
         // Initialize categories
         categories = new ArrayList<>();
 
-        // Insert way to access category from db
         // Initialize CategoryService
         categoryService = CategoryService.getInstance();
         addFirebaseChildListener();
@@ -62,29 +69,46 @@ public class AddItemActivity extends AppCompatActivity {
         adapter = new CustomCategorySpinnerAdapter(this, categories);
         categorySpinner.setAdapter(adapter);
 
-
         modifyActionBar();
 
-        // Assuming you have a button for adding an item
-        Button addButton = findViewById(R.id.AddItem_Button_AddItem); // Ensure you have this button in your layout
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Category selectedCategory = (Category) categorySpinner.getSelectedItem();
-                if (selectedCategory != null) {
-                    TextView tv = findViewById(R.id.selectedIconTextView);
-                    ImageView iv = findViewById(R.id.selectedIconImageView);
+        inputItemName = findViewById(R.id.AddItem_InputItemName);
+        inputItemCost = findViewById(R.id.AddItem_InputItemCost);
 
-                    tv.setText(selectedCategory.category_icon);
-                    iv.setImageResource(selectedCategory.category_icon);
-
-                    // Now you can use the categoryId as needed
-                    // For example, create an item with the selected category
-
-                }
-            }
-        });
+        addButton = findViewById(R.id.AddItem_Button_AddItem);
+        addButton.setOnClickListener(this);
     }
+
+    @Override
+    public void onClick(View v) {
+        int currentID = v.getId();
+        if (currentID == R.id.AddItem_Button_AddItem) {
+            Category selectedCategory = (Category) categorySpinner.getSelectedItem();
+            if (selectedCategory != null) {
+                TextView tv = findViewById(R.id.selectedIconTextView);
+                ImageView iv = findViewById(R.id.selectedIconImageView);
+
+                tv.setText(selectedCategory.category_icon);
+                iv.setImageResource(selectedCategory.category_icon);
+
+            }
+             onItemSave(selectedCategory);
+             this.finish();
+        }
+    }
+
+    private void onItemSave(Category selectedCategory) {
+        Intent intent = getIntent();
+        tripID = intent.getStringExtra("TRIP_ID");
+
+        Item item = new Item();
+        item.item_name = inputItemName.getText().toString();
+        item.item_cost = Double.valueOf(inputItemCost.getText().toString());
+        item.category_id = selectedCategory.category_id;
+        item.trip_id = tripID;
+        ItemService.getInstance().createItem(item);
+    }
+
+
 
 
     @Override

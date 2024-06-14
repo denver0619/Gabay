@@ -26,7 +26,7 @@ public class ItemService {
 
     //Initialize all the needed variables
     //the constructor is private because this is a singleton
-    private ItemService() {
+    public ItemService() {
         fbAuth = FirebaseAuth.getInstance();
         fbUser = fbAuth.getCurrentUser();
         fbDB = FirebaseDatabase.getInstance();
@@ -34,7 +34,7 @@ public class ItemService {
         //uses userid as key for this node (i.e. table)
         assert fbUser != null;
         userDBRef = fbDB.getReference("items/" + fbUser.getUid());
-        userDBRef2 = fbDB.getReference("items-linear" + fbUser.getUid());
+        userDBRef2 = fbDB.getReference("items-linear/" + fbUser.getUid());
         userDBRef.keepSynced(true);
         userDBRef2.keepSynced(true);
     }

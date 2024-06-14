@@ -11,5 +11,4 @@ class Icon {
         return iconResource;
     }
 
-    // Optionally, you can add setters and getters for other properties of the icon
 }

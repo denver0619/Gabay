@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.digiview.gabay.R;
 import com.digiview.gabay.domain.entities.Trip;
 
-import java.lang.reflect.Field;
 import java.util.List;
 
 class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.TripViewHolder> {

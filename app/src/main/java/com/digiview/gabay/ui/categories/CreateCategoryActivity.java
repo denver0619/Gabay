@@ -103,7 +103,7 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
                 iconList.add(new Icon(iconResource));
             }
         }
-        iconsArray.recycle();  // Clean up the TypedArray to avoid memory leaks
+        iconsArray.recycle();
 
         return iconList;
 

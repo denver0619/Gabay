@@ -12,14 +12,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="horizontal"
-        android:padding="6dp"
+        android:padding="10dp"
         android:layout_marginBottom="8dp">
 
         <ImageView
             android:id="@+id/TripDetails_ItemList_Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_transportation_101"
+
             android:layout_gravity="center"/>
 
         <TextView
@@ -35,9 +35,20 @@
             android:id="@+id/TripDetails_ItemList_Cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="₱ 710.00"
             android:layout_gravity="center"
-            android:layout_marginLeft="12dp"/>
+            android:layout_marginLeft="12dp"
+            android:text="₱ 710.00" />
+
+        <ImageButton
+            android:id="@+id/TripDetails_ItemList_Remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_remove_circle"
+            android:background="@color/transparent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:padding="6dp"/>
+
 
     </LinearLayout>
 

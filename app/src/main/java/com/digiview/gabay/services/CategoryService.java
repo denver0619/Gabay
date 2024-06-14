@@ -15,6 +15,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class CategoryService {
     //Declare all the needed variables
@@ -84,6 +85,20 @@ public class CategoryService {
                 callback.onChildMoved(snapshot, previousChildName);
             }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                callback.onCancelled(error);
+            }
+        });
+    }
+
+    public void addValueEventListener(String key, FirebaseValueEventListenerCallback<DataSnapshot> callback) {
+        DatabaseReference existingRef = userDBRef.child(key);
+        existingRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                callback.onDataChange(snapshot);
+            }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 callback.onCancelled(error);

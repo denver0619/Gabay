@@ -98,7 +98,6 @@ public class TripsFragment extends Fragment implements TripInterface{
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Trip trip = snapshot.getValue(Trip.class);
-                // Toast.makeText(getActivity(), trip.trip_name, Toast.LENGTH_SHORT).show();
                 trips.add(0, trip);
                 tripsAdapter.notifyItemInserted(0);
             }
