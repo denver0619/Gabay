@@ -94,8 +94,9 @@ public class SpendingFragment extends Fragment {
     }
 
     private void displayTotalCost() {
-        Integer totalCost = spendingAdapter.getTotalCost();
-        totalCostTextView.setText("₱ " + totalCost);
+        Double totalCost = spendingAdapter.getTotalCost();
+        String formattedTotalCost = String.format("₱ %.2f", totalCost);
+        totalCostTextView.setText(formattedTotalCost);
     }
 
     @Override

@@ -83,8 +83,8 @@ public class SpendingAdapter extends RecyclerView.Adapter<SpendingAdapter.Spendi
         notifyItemInserted(0);
     }
 
-    public int getTotalCost() {
-        int totalCost = 0;
+    public double getTotalCost() {
+        double totalCost = 0.00;
         for (Item item : items) {
             totalCost += item.item_cost;
         }

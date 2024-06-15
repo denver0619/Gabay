@@ -139,7 +139,9 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 .build();
         GoogleSignIn.getClient(SettingActivity.this, signInOptions).signOut();
         Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
+        finishAffinity();
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-        finish();
+
     }
 }

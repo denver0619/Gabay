@@ -120,10 +120,11 @@
 
         <Button
             android:id="@+id/AddItem_Button_AddItem"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add Item"
-            android:textColor="@color/black"/>
+            android:backgroundTint="@color/dark_blue"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/selectedIconTextView"

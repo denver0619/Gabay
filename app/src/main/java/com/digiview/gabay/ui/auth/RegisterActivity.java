@@ -108,6 +108,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return insets;
         });
 
+        // Enables offline capability of firebase rtdb
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         //initialize all needed views

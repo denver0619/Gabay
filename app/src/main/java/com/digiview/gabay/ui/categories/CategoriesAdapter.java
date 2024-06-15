@@ -43,14 +43,6 @@ class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoryV
         holder.categoryIcon.setImageResource(category.category_icon);
         holder.itemView.setTag(category);
 
-//        holder.editCategoryButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (categoryInterface != null) {
-//                    categoryInterface.onEditButtonClick(category);
-//                }
-//            }
-//        });
     }
 
     @Override

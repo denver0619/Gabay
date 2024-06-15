@@ -56,8 +56,7 @@ public class MainActivity extends AppCompatActivity{
             }
             return true;
         });
-        // Enables offline capability of firebase rtdb
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
     }
 
     private void replaceFragment(Fragment fragment){
