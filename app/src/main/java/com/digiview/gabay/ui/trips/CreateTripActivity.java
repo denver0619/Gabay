@@ -3,6 +3,7 @@ package com.digiview.gabay.ui.trips;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -30,7 +31,7 @@ import java.util.Locale;
 
 import com.digiview.gabay.R;
 
-public class CreateTripActivity extends AppCompatActivity implements  View.OnClickListener{
+public class CreateTripActivity extends AppCompatActivity implements  View.OnClickListener, TextToSpeech.OnInitListener {
     //CONSTRUCTORS
 
     //CLASS VARIABLES
@@ -39,6 +40,7 @@ public class CreateTripActivity extends AppCompatActivity implements  View.OnCli
     private EditText inputStartDate;
     private Button saveButton;
     private TripService tripService;
+    private TextToSpeech tts;
 
     //ANDROID LIFECYCLE OVERRIDES
     @Override
@@ -51,6 +53,9 @@ public class CreateTripActivity extends AppCompatActivity implements  View.OnCli
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        tts = new TextToSpeech(this, this);
+        tts.setLanguage(Locale.US);
 
         modifyActionBar();
 
@@ -103,6 +108,12 @@ public class CreateTripActivity extends AppCompatActivity implements  View.OnCli
                 }
             });
             AlertDialog dialog = builder.create();
+            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                    tts.speak(getResources().getString(R.string.unsaved_changes_dialog), TextToSpeech.QUEUE_FLUSH, null);
+                }
+            });
             dialog.show();
 
 
@@ -174,4 +185,8 @@ public class CreateTripActivity extends AppCompatActivity implements  View.OnCli
         tripService.createTrip(trip);
     }
 
+    @Override
+    public void onInit(int status) {
+
+    }
 }

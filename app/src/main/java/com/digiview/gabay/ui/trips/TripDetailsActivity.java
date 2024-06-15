@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -32,19 +33,24 @@ import com.google.firebase.database.DatabaseError;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-public class TripDetailsActivity extends AppCompatActivity {
+public class TripDetailsActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
     private List<Item> tripItems = new ArrayList<>();
     private ItemsAdapter itemsAdapter;
     private String tripID;
     private Double tripBudget;
     private ItemService itemService;
+    private TextToSpeech tts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_trip_details);
+
+        tts = new TextToSpeech(this, this);
+        tts.setLanguage(Locale.US);
 
         // Initialize RecyclerView and adapter
         RecyclerView recyclerView = findViewById(R.id.TripDetails_RecyclerView);
@@ -142,7 +148,7 @@ public class TripDetailsActivity extends AppCompatActivity {
     private void showDeleteConfirmationDialog(int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme);
         builder.setTitle("Are you sure you want to delete this item?");
-        builder.setMessage("This will delete this item permanently. You cannot undo this action.");
+        builder.setMessage(getResources().getString(R.string.delete_trip_details));
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -157,6 +163,12 @@ public class TripDetailsActivity extends AppCompatActivity {
             }
         });
         AlertDialog dialog = builder.create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                tts.speak(getResources().getString(R.string.delete_trip_details), TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
         dialog.show();
     }
 
@@ -199,5 +211,10 @@ public class TripDetailsActivity extends AppCompatActivity {
             TextView textViewTripBudget = findViewById(R.id.TripDetails_Budget);
             textViewTripBudget.setText(formattedBudget);
         }
+    }
+
+    @Override
+    public void onInit(int status) {
+
     }
 }

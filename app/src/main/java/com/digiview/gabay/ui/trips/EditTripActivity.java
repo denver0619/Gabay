@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -30,7 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class EditTripActivity extends AppCompatActivity implements View.OnClickListener{
+public class EditTripActivity extends AppCompatActivity implements View.OnClickListener, TextToSpeech.OnInitListener {
 
     private EditText inputName;
     private EditText inputBudget;
@@ -38,6 +39,7 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
     private Button editButton;
     private String tripID;
     private TripService tripService;
+    private TextToSpeech tts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,9 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        tts = new TextToSpeech(this, this);
+        tts.setLanguage(Locale.US);
 
         // Extract intent extras to populate UI fields
         Intent intent = getIntent();
@@ -96,6 +101,12 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
                 }
             });
             AlertDialog dialog = builder.create();
+            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                    tts.speak(getResources().getString(R.string.unsaved_changes_dialog), TextToSpeech.QUEUE_FLUSH, null);
+                }
+            });
             dialog.show();
 
 
@@ -175,5 +186,10 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
         trip.trip_budget = Double.valueOf(inputBudget.getText().toString());
         trip.trip_date = inputStartDate.getText().toString();
         tripService.editTrip(trip);
+    }
+
+    @Override
+    public void onInit(int status) {
+
     }
 }

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 
+import android.speech.tts.TextToSpeech;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -31,9 +32,10 @@ import com.digiview.gabay.services.CategoryService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
-public class CreateCategoryActivity extends AppCompatActivity implements View.OnClickListener{
+public class CreateCategoryActivity extends AppCompatActivity implements View.OnClickListener, TextToSpeech.OnInitListener{
 
 
     private RecyclerView iconRecyclerView;
@@ -48,6 +50,8 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
 
     private Integer categoryIcon;
 
+    private TextToSpeech tts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +62,9 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        tts = new TextToSpeech(this, this);
+        tts.setLanguage(Locale.US);
 
         modifyActionBar();
 
@@ -181,6 +188,12 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
                 }
             });
             AlertDialog dialog = builder.create();
+            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                    tts.speak(getResources().getString(R.string.unsaved_changes_dialog), TextToSpeech.QUEUE_FLUSH, null);
+                }
+            });
             dialog.show();
 
 
@@ -208,5 +221,9 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
     }
 
 
+    @Override
+    public void onInit(int status) {
+
+    }
 }
 

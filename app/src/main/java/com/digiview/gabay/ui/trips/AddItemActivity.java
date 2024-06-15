@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,8 +38,9 @@ import com.google.firebase.database.DatabaseError;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-public class AddItemActivity extends AppCompatActivity implements View.OnClickListener{
+public class AddItemActivity extends AppCompatActivity implements View.OnClickListener, TextToSpeech.OnInitListener {
 
     private Spinner categorySpinner;
     private CustomCategorySpinnerAdapter adapter;
@@ -48,6 +50,7 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
     private TextView inputItemCost;
     private Button addButton;
     String tripID;
+    private TextToSpeech tts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,9 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        tts = new TextToSpeech(this, this);
+        tts.setLanguage(Locale.US);
 
         Intent intent = getIntent();
         tripID = intent.getStringExtra("TRIP_ID");
@@ -147,6 +153,12 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
                 }
             });
             AlertDialog dialog = builder.create();
+            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                    tts.speak(getResources().getString(R.string.unsaved_changes_dialog), TextToSpeech.QUEUE_FLUSH, null);
+                }
+            });
             dialog.show();
 
 
@@ -230,4 +242,8 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
         });
     }
 
+    @Override
+    public void onInit(int status) {
+
+    }
 }

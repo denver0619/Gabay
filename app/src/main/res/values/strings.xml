@@ -142,5 +142,12 @@
         Are you sure you want to leave this page?\nChanges you made will not be saved.
     </string>
 
+    <string name="logout">
+        Are you sure you want to logout?
+    </string>
+
+    <string name="delete_trip_details">
+        This will delete this item permanently. You cannot undo this action.
+    </string>
 
 </resources>

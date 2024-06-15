@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,8 +32,9 @@ import com.digiview.gabay.services.CategoryService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-public class EditCategoryActivity extends AppCompatActivity implements View.OnClickListener{
+public class EditCategoryActivity extends AppCompatActivity implements View.OnClickListener, TextToSpeech.OnInitListener{
 
     private RecyclerView iconRecyclerView;
     private TextView selectedIconTextView;
@@ -44,6 +46,7 @@ public class EditCategoryActivity extends AppCompatActivity implements View.OnCl
     private  String categoryID;
     private  String categoryName;
     private  Integer categoryIcon;
+    private TextToSpeech tts;
 
 
     @Override
@@ -56,6 +59,9 @@ public class EditCategoryActivity extends AppCompatActivity implements View.OnCl
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        tts = new TextToSpeech(this, this);
+        tts.setLanguage(Locale.US);
 
         // Extract intent extras to populate UI fields
         Intent intent = getIntent();
@@ -192,6 +198,12 @@ public class EditCategoryActivity extends AppCompatActivity implements View.OnCl
                 }
             });
             AlertDialog dialog = builder.create();
+            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                    tts.speak(getResources().getString(R.string.unsaved_changes_dialog), TextToSpeech.QUEUE_FLUSH, null);
+                }
+            });
             dialog.show();
 
 
@@ -225,5 +237,10 @@ public class EditCategoryActivity extends AppCompatActivity implements View.OnCl
         }
 
         categoryService.editCategory(category); // Call service method to update category
+    }
+
+    @Override
+    public void onInit(int status) {
+
     }
 }

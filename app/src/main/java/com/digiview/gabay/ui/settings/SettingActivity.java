@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -24,11 +25,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SettingActivity extends AppCompatActivity implements View.OnClickListener{
+import java.util.Locale;
+
+public class SettingActivity extends AppCompatActivity implements View.OnClickListener, TextToSpeech.OnInitListener{
 
     private MaterialButton buttonAbout;
     private MaterialButton buttonHelp;
     private MaterialButton buttonLogout;
+    private TextToSpeech tts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,9 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        tts = new TextToSpeech(this, this);
+        tts.setLanguage(Locale.US);
 
         modifyActionBar();
 
@@ -109,7 +116,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     private void showLogoutConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme);
         builder.setTitle("Logout");
-        builder.setMessage("Are you sure you want to logout?");
+        builder.setMessage(getResources().getString(R.string.logout));
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -126,6 +133,12 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
         AlertDialog dialog = builder.create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                tts.speak(getResources().getString(R.string.logout), TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
         dialog.show();
     }
 
@@ -142,6 +155,11 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         finishAffinity();
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+
+    }
+
+    @Override
+    public void onInit(int status) {
 
     }
 }
