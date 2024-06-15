@@ -13,13 +13,16 @@
         android:theme="@style/Theme.Gabay"
         tools:targetApi="31">
         <activity
+            android:name=".ui.categories.EditCategoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.settings.HelpActivity"
             android:exported="false"
-            android:label="Help"/>
+            android:label="Help" />
         <activity
             android:name=".ui.trips.AddItemActivity"
             android:exported="false"
-            android:label="Add Item"/>
+            android:label="Add Item" />
         <activity
             android:name=".ui.trips.TripDetailsActivity"
             android:exported="false" />

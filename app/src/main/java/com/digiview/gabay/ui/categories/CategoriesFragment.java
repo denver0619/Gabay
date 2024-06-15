@@ -12,11 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.Toast;
 
 import com.digiview.gabay.R;
 import com.digiview.gabay.domain.entities.Category;
-import com.digiview.gabay.domain.entities.Trip;
 import com.digiview.gabay.services.CategoryService;
 import com.digiview.gabay.services.FirebaseChildEventListenerCallback;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -26,7 +25,7 @@ import com.google.firebase.database.DatabaseError;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoriesFragment extends Fragment {
+public class CategoriesFragment extends Fragment  implements CategoryInterface{
 
     private RecyclerView recyclerView;
     private CategoriesAdapter categoriesAdapter;
@@ -47,7 +46,7 @@ public class CategoriesFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         categories = new ArrayList<>();
-        categoriesAdapter = new CategoriesAdapter(getContext(), categories);
+        categoriesAdapter = new CategoriesAdapter(getContext(), categories, this);
 
         categoryService = CategoryService.getInstance();
         addFirebaseChildListener();
@@ -119,6 +118,18 @@ public class CategoriesFragment extends Fragment {
                 }
             }
         });
+
+    }
+
+
+
+    @Override
+    public void onEditButtonClick(Category category) {
+        Intent intent = new Intent(requireContext(), EditCategoryActivity.class);
+        intent.putExtra("CATEGORY_ID", category.category_id);
+        intent.putExtra("CATEGORY_NAME", category.category_name);
+        intent.putExtra("CATEGORY_ICON", category.category_icon);
+        startActivity(intent);
 
     }
 }
