@@ -116,12 +116,12 @@ class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.TripViewHolder> {
                     switch (item.getItemId()) {
                         case R.id.action_edit:
                             // Handle edit click
-                            Toast.makeText(context, "Edit clicked for position " + position, Toast.LENGTH_SHORT).show();
+
                             handleEdit(trip);
                             return true;
                         case R.id.action_delete:
                             // Handle delete click
-                            Toast.makeText(context, "Delete clicked for position " + position, Toast.LENGTH_SHORT).show();
+
                             handleDelete(trip);
                             return true;
                         default:

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.digiview.gabay.R;
 import com.digiview.gabay.domain.entities.Item;
@@ -24,6 +25,7 @@ public class SpendingFragment extends Fragment {
 
     private SpendingAdapter spendingAdapter;
     private RecyclerView recyclerView;
+    private TextView totalCostTextView;
 
     public SpendingFragment() {
         // require a empty public constructor
@@ -45,12 +47,16 @@ public class SpendingFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(spendingAdapter);
 
+        totalCostTextView = view.findViewById(R.id.textViewTotalExpensesMoney);
+
         // Load data from ItemService
         loadRecentItems();
 
         // Hide the FloatingActionButton
         FloatingActionButton fab = getActivity().findViewById(R.id.main_fab);
         fab.hide();
+
+        displayTotalCost();
     }
 
     private void loadRecentItems() {
@@ -61,6 +67,7 @@ public class SpendingFragment extends Fragment {
                 Item item = snapshot.getValue(Item.class);
                 if (item != null) {
                     spendingAdapter.addItem(item);
+                    displayTotalCost();
                 }
             }
 
@@ -84,6 +91,11 @@ public class SpendingFragment extends Fragment {
                 // Handle error if needed
             }
         });
+    }
+
+    private void displayTotalCost() {
+        Integer totalCost = spendingAdapter.getTotalCost();
+        totalCostTextView.setText("₱ " + totalCost);
     }
 
     @Override
