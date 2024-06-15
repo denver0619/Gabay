@@ -43,14 +43,13 @@
                     android:layout_height="wrap_content"
                     android:text="Insert Item Here"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="12dp"/>
+                    />
                 <TextView
                     android:id="@+id/Spending_ItemList_CategoryName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Insert Category Name Here"
                     android:textSize="11dp"
-                    android:layout_marginLeft="12dp"
                     android:layout_gravity="center"
                     />
             </LinearLayout>

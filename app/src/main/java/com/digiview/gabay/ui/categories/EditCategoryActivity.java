@@ -86,7 +86,9 @@ public class EditCategoryActivity extends AppCompatActivity implements View.OnCl
         }
         if (categoryIcon != -1) {
             outputIcon.setImageResource(categoryIcon);
-            selectedIconTextView.setVisibility(View.VISIBLE);
+            outputIcon.setVisibility(View.GONE);
+
+            selectedIconTextView.setVisibility(View.GONE);
             selectedIconTextView.setText(String.valueOf(categoryIcon));
         } else {
             selectedIconTextView.setText(""); // Set to an empty string to avoid null issues
@@ -99,9 +101,10 @@ public class EditCategoryActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onItemClick(int iconId) {
                 // Update the TextView with the ID of the selected icon
-                selectedIconTextView.setVisibility(View.VISIBLE);
+                selectedIconTextView.setVisibility(View.GONE);
                 selectedIconTextView.setText(String.valueOf(iconId));
                 outputIcon.setImageResource(iconId);
+                outputIcon.setVisibility(View.GONE);
             }
         }, initialSelectedPosition);
         iconRecyclerView.setAdapter(adapter);

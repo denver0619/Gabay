@@ -76,9 +76,11 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
 
         // Display initial icon in outputIcon ImageView
         outputIcon.setImageResource(categoryIcon);
+        outputIcon.setVisibility(View.GONE);
 
         // Display initial icon ID in selectedIconTextView
         selectedIconTextView.setText(String.valueOf(categoryIcon));
+        selectedIconTextView.setVisibility(View.GONE);
 
         List<Icon> iconList = generateDummyIcons();
         int initialSelectedPosition = getPositionForIcon(categoryIcon, iconList);
@@ -86,13 +88,10 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
             @Override
             public void onItemClick(int iconId) {
                 // Update the TextView with the ID of the selected icon
-                selectedIconTextView.setVisibility(View.VISIBLE);
+                selectedIconTextView.setVisibility(View.GONE);
                 selectedIconTextView.setText(String.valueOf(iconId));
-
-
                 outputIcon.setImageResource(iconId);
-
-                // Insert Action Upon Item Click
+                outputIcon.setVisibility(View.GONE);
 
             }
         }, initialSelectedPosition);

@@ -86,14 +86,16 @@
             android:layout_width="365dp"
             android:layout_height="29dp"
             android:layout_marginTop="16dp"
-            android:text="Selected Icon ID: "
+
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/outputIcon"
             android:layout_width="48dp"
-            android:layout_height="48dp" />
+            android:layout_height="48dp"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/button_EditCategory"
