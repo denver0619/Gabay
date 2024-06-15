@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -58,9 +59,9 @@ public class EditCategoryActivity extends AppCompatActivity implements View.OnCl
         });
 
         Intent intent = getIntent();
-        String categoryID = intent.getStringExtra("CATEGORY_ID");
-        String categoryName = intent.getStringExtra("CATEGORY_NAME");
-        Integer categoryIcon = intent.getIntExtra("CATEGORY_ICON", -1);
+        categoryID = intent.getStringExtra("CATEGORY_ID");
+        categoryName = intent.getStringExtra("CATEGORY_NAME");
+        categoryIcon = intent.getIntExtra("CATEGORY_ICON", -1);
 
 
 
@@ -93,6 +94,7 @@ public class EditCategoryActivity extends AppCompatActivity implements View.OnCl
         }
 
         List<Icon> iconList = generateDummyIcons();
+        int initialSelectedPosition = getPositionForIcon(categoryIcon, iconList);
         adapter = new IconAdapter(iconList, new IconAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int iconId) {
@@ -101,10 +103,19 @@ public class EditCategoryActivity extends AppCompatActivity implements View.OnCl
                 selectedIconTextView.setText(String.valueOf(iconId));
                 outputIcon.setImageResource(iconId);
             }
-        });
+        }, initialSelectedPosition);
         iconRecyclerView.setAdapter(adapter);
 
         saveButton.setOnClickListener(this);
+    }
+
+    private int getPositionForIcon(int iconId, List<Icon> iconList) {
+        for (int i = 0; i < iconList.size(); i++) {
+            if (iconList.get(i).getIconResource() == iconId) {
+                return i;
+            }
+        }
+        return RecyclerView.NO_POSITION;
     }
 
     private List<Icon> generateDummyIcons() {
@@ -174,6 +185,7 @@ public class EditCategoryActivity extends AppCompatActivity implements View.OnCl
 
     private void onCategoryEdit() {
         Category category = new Category();
+        category.category_id = categoryID;
         category.category_name = inputCategoryName.getText().toString();
         //category.category_icon = Integer.parseInt(selectedIconTextView.getText().toString());
 
@@ -184,6 +196,11 @@ public class EditCategoryActivity extends AppCompatActivity implements View.OnCl
         } else {
             category.category_icon = -1; // or handle this case appropriately
         }
+
+        Log.d("catid", "output: " + category.category_id);
+        Log.d("catname", "output: " + category.category_name);
+        Log.d("caticon", "output: " + category.category_icon);
+
 
         categoryService.editCategory(category);
     }

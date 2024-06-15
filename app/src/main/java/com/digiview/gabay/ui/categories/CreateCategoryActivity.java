@@ -44,6 +44,8 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
 
     private Button saveButton;
 
+    private Integer categoryIcon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,9 +72,16 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
 
         saveButton = findViewById(R.id.button_CreateCategory);
 
+        categoryIcon = 2131230892;
 
+        // Display initial icon in outputIcon ImageView
+        outputIcon.setImageResource(categoryIcon);
+
+        // Display initial icon ID in selectedIconTextView
+        selectedIconTextView.setText(String.valueOf(categoryIcon));
 
         List<Icon> iconList = generateDummyIcons();
+        int initialSelectedPosition = getPositionForIcon(categoryIcon, iconList);
         adapter = new IconAdapter(iconList, new IconAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int iconId) {
@@ -86,11 +95,20 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
                 // Insert Action Upon Item Click
 
             }
-        });
+        }, initialSelectedPosition);
         iconRecyclerView.setAdapter(adapter);
 
         saveButton.setOnClickListener(this);
 
+    }
+
+    private int getPositionForIcon(int iconId, List<Icon> iconList) {
+        for (int i = 0; i < iconList.size(); i++) {
+            if (iconList.get(i).getIconResource() == iconId) {
+                return i;
+            }
+        }
+        return RecyclerView.NO_POSITION;
     }
 
     private List<Icon> generateDummyIcons() {

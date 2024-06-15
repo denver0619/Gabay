@@ -22,9 +22,10 @@ public class IconAdapter extends RecyclerView.Adapter<IconAdapter.IconViewHolder
         void onItemClick(int iconId);
     }
 
-    public IconAdapter(List<Icon> iconList, OnItemClickListener listener) {
+    public IconAdapter(List<Icon> iconList, OnItemClickListener listener, int initialSelectedPosition) {
         this.iconList = iconList;
         this.listener = listener;
+        this.selectedPosition = initialSelectedPosition;
     }
 
     @NonNull
