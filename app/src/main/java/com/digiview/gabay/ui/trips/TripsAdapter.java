@@ -67,6 +67,7 @@ class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.TripViewHolder> {
         ImageView kebabMenu;
         private List<Trip> tripList;
         private final Context context;
+        TripService tripService;
 
         public TripViewHolder(@NonNull View itemView, TripInterface tripInterface, Context context, List<Trip> tripList) {
             super(itemView);
@@ -76,6 +77,9 @@ class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.TripViewHolder> {
             tripName = itemView.findViewById(R.id.Trips_TripTitle);
             tripDate = itemView.findViewById(R.id.Trips_TripDate);
             kebabMenu = itemView.findViewById(R.id.Trips_Kebab);
+
+            tripService = TripService.getInstance();
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -138,7 +142,9 @@ class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.TripViewHolder> {
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    TripService.getInstance().deleteTrip(trip);
+
+                    // TripService.getInstance().deleteTrip(trip);
+                    tripService.deleteTrip(trip);
 
                 }
             });

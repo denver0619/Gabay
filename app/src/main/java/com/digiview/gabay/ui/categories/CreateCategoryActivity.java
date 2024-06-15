@@ -33,17 +33,18 @@ import java.util.List;
 
 public class CreateCategoryActivity extends AppCompatActivity implements View.OnClickListener{
 
-    // UI components
+
     private RecyclerView iconRecyclerView;
     private TextView selectedIconTextView;
+    private IconAdapter adapter;
+
+    private CategoryService categoryService;
     private ImageView outputIcon;
     private EditText categoryName;
+
     private Button saveButton;
 
-    // Other variables
-    private IconAdapter adapter;
-    private CategoryService categoryService;
-    private Integer categoryIcon; // Placeholder for category icon resource ID
+    private Integer categoryIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,20 +57,21 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
             return insets;
         });
 
-        // Customize action bar and status bar appearance
         modifyActionBar();
 
         categoryService = CategoryService.getInstance();
 
 
-        // Initialize UI components
         iconRecyclerView = findViewById(R.id.iconRecyclerView);
+        iconRecyclerView.setLayoutManager(new GridLayoutManager(this, 5));
+
         outputIcon = findViewById(R.id.outputIcon);
+
         categoryName = findViewById(R.id.CreateCategory_InputCategoryName);
-        selectedIconTextView = findViewById(R.id.selectedIconTextView);
+        selectedIconTextView = findViewById(R.id.selectedIconTextView); // Initialize the TextView
+
         saveButton = findViewById(R.id.button_CreateCategory);
 
-        // Initial icon resource ID for selection
         categoryIcon = 2131230892;
 
         // Display initial icon in outputIcon ImageView
@@ -78,7 +80,6 @@ public class CreateCategoryActivity extends AppCompatActivity implements View.On
         // Display initial icon ID in selectedIconTextView
         selectedIconTextView.setText(String.valueOf(categoryIcon));
 
-        // Setup RecyclerView for icons
         List<Icon> iconList = generateDummyIcons();
         int initialSelectedPosition = getPositionForIcon(categoryIcon, iconList);
         adapter = new IconAdapter(iconList, new IconAdapter.OnItemClickListener() {
