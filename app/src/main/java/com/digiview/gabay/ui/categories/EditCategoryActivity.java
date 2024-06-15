@@ -35,13 +35,10 @@ public class EditCategoryActivity extends AppCompatActivity implements View.OnCl
     private RecyclerView iconRecyclerView;
     private TextView selectedIconTextView;
     private IconAdapter adapter;
-
     private CategoryService categoryService;
     private ImageView outputIcon;
     private EditText inputCategoryName;
-
     private Button saveButton;
-
     private  String categoryID;
     private  String categoryName;
     private  Integer categoryIcon;
@@ -58,28 +55,30 @@ public class EditCategoryActivity extends AppCompatActivity implements View.OnCl
             return insets;
         });
 
+        // Extract intent extras to populate UI fields
         Intent intent = getIntent();
         categoryID = intent.getStringExtra("CATEGORY_ID");
         categoryName = intent.getStringExtra("CATEGORY_NAME");
         categoryIcon = intent.getIntExtra("CATEGORY_ICON", -1);
 
-
-
-
+        // Customize action bar and status bar appearance
         modifyActionBar();
 
+        // Initialize CategoryService for data operations
         categoryService = CategoryService.getInstance();
 
-
+        // Initialize RecyclerView for icons
         iconRecyclerView = findViewById(R.id.iconRecyclerView);
         iconRecyclerView.setLayoutManager(new GridLayoutManager(this, 5));
 
+        // Initialize views for category details
         outputIcon = findViewById(R.id.outputIcon);
-
         inputCategoryName = findViewById(R.id.EditCategory_InputCategoryName);
         selectedIconTextView = findViewById(R.id.selectedIconTextView);
 
+        // Initialize and set up Save button
         saveButton = findViewById(R.id.button_EditCategory);
+        saveButton.setOnClickListener(this);
 
         // Set the received data to input fields
         if (categoryName != null) {
@@ -93,6 +92,7 @@ public class EditCategoryActivity extends AppCompatActivity implements View.OnCl
             selectedIconTextView.setText(""); // Set to an empty string to avoid null issues
         }
 
+        // Generate icons and initialize adapter
         List<Icon> iconList = generateDummyIcons();
         int initialSelectedPosition = getPositionForIcon(categoryIcon, iconList);
         adapter = new IconAdapter(iconList, new IconAdapter.OnItemClickListener() {
@@ -106,7 +106,7 @@ public class EditCategoryActivity extends AppCompatActivity implements View.OnCl
         }, initialSelectedPosition);
         iconRecyclerView.setAdapter(adapter);
 
-        saveButton.setOnClickListener(this);
+
     }
 
     private int getPositionForIcon(int iconId, List<Icon> iconList) {
@@ -184,12 +184,12 @@ public class EditCategoryActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void onCategoryEdit() {
+        // Perform update operation for the category
         Category category = new Category();
         category.category_id = categoryID;
         category.category_name = inputCategoryName.getText().toString();
-        //category.category_icon = Integer.parseInt(selectedIconTextView.getText().toString());
 
-        // Check if selectedIconTextView has a valid integer value
+        // Parse and set selected icon from TextView
         String iconText = selectedIconTextView.getText().toString();
         if (!iconText.isEmpty()) {
             category.category_icon = Integer.parseInt(iconText);
@@ -197,7 +197,6 @@ public class EditCategoryActivity extends AppCompatActivity implements View.OnCl
             category.category_icon = -1;
         }
 
-
-        categoryService.editCategory(category);
+        categoryService.editCategory(category); // Call service method to update category
     }
 }

@@ -34,7 +34,7 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
     private EditText inputBudget;
     private EditText inputStartDate;
     private Button editButton;
-    String tripID;
+    private String tripID;
     private TripService tripService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +47,7 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
             return insets;
         });
 
-//        intent.putExtra("TRIP_ID", trip.trip_id);
-//        intent.putExtra("TRIP_NAME", trip.trip_name);
-//        intent.putExtra("TRIP_BUDGET", trip.trip_budget);
-//        intent.putExtra("TRIP_DATE", trip.trip_date);
-
+        // Extract intent extras to populate UI fields
         Intent intent = getIntent();
         tripID = intent.getStringExtra("TRIP_ID");
         String tripName = intent.getStringExtra("TRIP_NAME");
@@ -61,7 +57,6 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
         modifyActionBar();
 
         tripService = TripService.getInstance();
-        // Add DatePicker upon clicking on date input
         inputName = findViewById(R.id.EditTrip_InputTripName);
         inputBudget = findViewById(R.id.EditTrip_InputBudget);
         inputStartDate = findViewById(R.id.EditTrip_InputStartDate);

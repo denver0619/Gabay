@@ -37,72 +37,65 @@ public class TripDetailsActivity extends AppCompatActivity {
     private List<Item> tripItems = new ArrayList<>();
     private ItemsAdapter itemsAdapter;
     private String tripID;
-
+    private Double tripBudget;
     private ItemService itemService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_trip_details);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
+        // Initialize RecyclerView and adapter
+        RecyclerView recyclerView = findViewById(R.id.TripDetails_RecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        itemsAdapter = new ItemsAdapter(tripItems, new ItemsAdapter.OnItemRemoveListener() {
+            @Override
+            public void onItemRemove(int position) {
+                showDeleteConfirmationDialog(position);
+            }
+        }, this);
+        recyclerView.setAdapter(itemsAdapter);
+
+        // Retrieve tripID and tripBudget from intent
         Intent intent = getIntent();
         tripID = intent.getStringExtra("TRIP_ID");
+        tripBudget = intent.getDoubleExtra("TRIP_BUDGET", 0.00);
 
+        // Populate UI with passed data
         populateActivityWithPassedData();
         redirectToAddItem(tripID);
         modifyActionBar();
 
-
-
-        RecyclerView recyclerView = findViewById(R.id.TripDetails_RecyclerView);
-
-
-
+        // Initialize ItemService for Firebase operations
         itemService = ItemService.getInstance();
 
-        itemsAdapter = new ItemsAdapter(tripItems, new ItemsAdapter.OnItemRemoveListener() {
-            @Override
-            public void onItemRemove(int position) {
-                // Show confirmation Dialog
+        // Calculate total expense and update TextView
+        updateTotalExpense();
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(TripDetailsActivity.this, R.style.CustomAlertDialogTheme);
-                builder.setTitle("Are you sure you want to \n" +
-                        "delete this item?");
-                builder.setMessage("This will delete this item permanently. You cannot undo this action.");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Item item = tripItems.get(position);
-                        itemService.deleteItem(item);
-                    }
-                });
-                // Add the negative button (No)
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Dismiss the dialog if "No" is clicked
-                        dialog.dismiss();
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-
-
-            }
-        }, this);
-
-
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(itemsAdapter);
-
+        // Setup Firebase listener to update tripItems
         addFirebaseChildListener();
+    }
 
+    private void updateTotalExpense() {
+        double totalExpense = calculateTotalExpense();
+        TextView textViewExpense = findViewById(R.id.TripDetails_Expense);
+        String formattedExpense = String.format("₱ %.2f", totalExpense);
+        textViewExpense.setText(formattedExpense);
+
+        // Calculate remaining balance and update TextView
+        double remainingBalance = tripBudget - totalExpense;
+        TextView textViewRemainingBalance = findViewById(R.id.TripDetails_RemainingBalance);
+        String formattedRemainingBalance = String.format("₱ %.2f", remainingBalance);
+        textViewRemainingBalance.setText(formattedRemainingBalance);
+    }
+
+    private double calculateTotalExpense() {
+        double total = 0.0;
+        for (Item item : tripItems) {
+            total += item.item_cost;
+        }
+        return total;
     }
 
     private void addFirebaseChildListener() {
@@ -115,42 +108,60 @@ public class TripDetailsActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Item item = snapshot.getValue(Item.class);
-                tripItems.add(0, item);
+                tripItems.add(0, item); // Add at the beginning for newest items
                 itemsAdapter.notifyItemInserted(0);
+                updateTotalExpense(); // Update total expense after adding item
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+                // Handle item update if needed
             }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+                // Handle item moved if needed
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                int index = -1;
+                // Handle item removal
+                String itemKey = snapshot.getKey();
                 for (int i = 0; i < tripItems.size(); i++) {
-                    if (tripItems.get(i).item_id.equals(snapshot.getKey())) {
-                        index = i;
+                    if (tripItems.get(i).item_id.equals(itemKey)) {
+                        tripItems.remove(i);
+                        itemsAdapter.notifyItemRemoved(i);
+                        updateTotalExpense(); // Update total expense after removing item
                         break;
                     }
                 }
-                if (index !=-1) {
-                    tripItems.remove(index);
-                    itemsAdapter.notifyItemRemoved(index);
-                }
-
             }
         });
     }
 
+    private void showDeleteConfirmationDialog(int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme);
+        builder.setTitle("Are you sure you want to delete this item?");
+        builder.setMessage("This will delete this item permanently. You cannot undo this action.");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Item item = tripItems.get(position);
+                itemService.deleteItem(item);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
-    private void redirectToAddItem (String tripID) {
+    private void redirectToAddItem(String tripID) {
         ImageButton addItemButton = findViewById(R.id.TripDetails_Button_AddItem);
-
         addItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,40 +172,18 @@ public class TripDetailsActivity extends AppCompatActivity {
         });
     }
 
-
     private void modifyActionBar() {
-        // Set the status bar color programmatically
-        Window window = getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(getResources().getColor(R.color.black));
-
-        // Set the status bar text color to white
-        WindowInsetsController insetsController = null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            insetsController = window.getInsetsController();
-        }
-        if (insetsController != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                insetsController.setSystemBarsAppearance(0, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
-            }
-        }
-
-        // Enable the action bar and set the close button
+        // Modify action bar as needed
+        // Ensure you handle back button correctly
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back); // Ensure you have an ic_close drawable
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back); // Use your own icon
         }
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
     }
 
-    public boolean onOptionsItemSelected(MenuItem item) {
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            // Handle the back button click
             finish();
             return true;
         }
@@ -203,21 +192,12 @@ public class TripDetailsActivity extends AppCompatActivity {
 
     private void populateActivityWithPassedData() {
         Intent intent = getIntent();
-        // Check if extras are present
         if (intent != null && intent.getExtras() != null) {
-            // Retrieve the trip name from the extras using getStringExtra()
             String tripName = intent.getStringExtra("TRIP_NAME");
-            Double tripBudget = intent.getDoubleExtra("TRIP_BUDGET", 0.00);
-            String formattedBudget = String.format("%,.2f", tripBudget);
-
-            // Set Label
+            String formattedBudget = String.format("₱ %.2f", tripBudget);
             setTitle(tripName);
-
-            // Set the trip name to the TextView
             TextView textViewTripBudget = findViewById(R.id.TripDetails_Budget);
-            textViewTripBudget.setText(String.format("₱ %s", formattedBudget));
-
+            textViewTripBudget.setText(formattedBudget);
         }
     }
-
 }

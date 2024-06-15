@@ -132,6 +132,7 @@
 
 
                <TextView
+                   android:id="@+id/TripDetails_RemainingBalance"
                    android:layout_width="0dp"
                    android:layout_height="match_parent"
                    android:layout_weight="1"

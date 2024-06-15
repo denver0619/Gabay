@@ -30,14 +30,29 @@
                 android:src="@drawable/ic_category_transportation" />
 
 
-            <TextView
-                android:id="@+id/Spending_ExpenseTitle"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Bus Transportation"
                 android:layout_weight="1"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/Spending_ItemList_Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Insert Item Here"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="12dp"/>
+                <TextView
+                    android:id="@+id/Spending_ItemList_CategoryName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Insert Category Name Here"
+                    android:textSize="11dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
 
 
             <TextView

@@ -22,14 +22,30 @@
 
             android:layout_gravity="center"/>
 
-        <TextView
-            android:id="@+id/TripDetails_ItemList_Name"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Insert Item Here"
             android:layout_gravity="center"
-            android:layout_marginLeft="12dp"/>
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/TripDetails_ItemList_Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Insert Item Here"
+                android:layout_gravity="center"
+                android:layout_marginLeft="12dp"/>
+            <TextView
+                android:id="@+id/TripDetails_ItemList_CategoryName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Insert Category Name Here"
+                android:textSize="11dp"
+                android:layout_marginLeft="12dp"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/TripDetails_ItemList_Cost"

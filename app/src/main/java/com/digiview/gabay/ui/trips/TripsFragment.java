@@ -30,8 +30,6 @@ import java.util.List;
 
 public class TripsFragment extends Fragment implements TripInterface{
 
-    // Pass the model
-    // ArrayList<TripModel> tripModels = new ArrayList();
     private RecyclerView recyclerView;
     private TripsAdapter tripsAdapter;
     private List<Trip> trips;
@@ -50,17 +48,12 @@ public class TripsFragment extends Fragment implements TripInterface{
         recyclerView = view.findViewById(R.id.Trips_RecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        //setupModels
-
         trips = new ArrayList<>();
         tripsAdapter = new TripsAdapter(getContext(), trips, this);
-
-        //initialize service
         tripsService = TripService.getInstance();
         addFirebaseChildListener();
 
         recyclerView.setAdapter(tripsAdapter);
-
 
         return view;
     }
@@ -69,7 +62,7 @@ public class TripsFragment extends Fragment implements TripInterface{
     public void onResume() {
         super.onResume();
         FloatingActionButton fab = getActivity().findViewById(R.id.main_fab);
-        fab.show(); // Make the FAB visible
+        fab.show();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +78,7 @@ public class TripsFragment extends Fragment implements TripInterface{
     public void onPause() {
         super.onPause();
         FloatingActionButton fab = getActivity().findViewById(R.id.main_fab);
-        fab.hide(); // Hide the FAB when the fragment is not visible
+        fab.hide();
     }
 
     //

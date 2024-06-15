@@ -64,6 +64,7 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {pr
                 Category category = snapshot.getValue(Category.class);
                 categoryIcon[0] = category.category_icon;
                 holder.iconCategoryImageView.setImageResource(categoryIcon[0]);
+                holder.itemCategoryName.setText(category.category_name);
             }
         });
 
@@ -86,7 +87,7 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {pr
         public ImageView iconCategoryImageView;
         public TextView nameCategoryTextView;
         public TextView costItemTextView;
-        public TextView itemIDDebug;
+        public TextView itemCategoryName;
 
         public ImageButton removeButton;
         public ItemViewHolder(@NonNull View itemView) {
@@ -96,6 +97,8 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {pr
             nameCategoryTextView = itemView.findViewById(R.id.TripDetails_ItemList_Name);
             costItemTextView = itemView.findViewById(R.id.TripDetails_ItemList_Cost);
             removeButton = itemView.findViewById(R.id.TripDetails_ItemList_Remove);
+            itemCategoryName = itemView.findViewById(R.id.TripDetails_ItemList_CategoryName);
+
         }
     }
 }
