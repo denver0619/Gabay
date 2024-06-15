@@ -38,20 +38,13 @@
                 android:id="@+id/textViewTotalExpensesMoney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+
                 android:letterSpacing="0.05"
                 android:text="₱ 4,123,304.25"
                 android:textColor="@color/light_yellow"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:text="View Report Details >>"
-                android:textColor="@color/light_blue"
-                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -74,7 +67,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/Spending_RecyclerView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
 
