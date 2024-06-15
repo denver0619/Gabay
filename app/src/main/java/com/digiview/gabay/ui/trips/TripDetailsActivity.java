@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -12,7 +11,6 @@ import android.view.WindowInsetsController;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -29,7 +27,6 @@ import com.digiview.gabay.R;
 import com.digiview.gabay.domain.entities.Item;
 import com.digiview.gabay.services.FirebaseChildEventListenerCallback;
 import com.digiview.gabay.services.ItemService;
-import com.digiview.gabay.services.TripService;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 
@@ -37,7 +34,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TripDetailsActivity extends AppCompatActivity {
-
     private List<Item> tripItems = new ArrayList<>();
     private ItemsAdapter itemsAdapter;
     private String tripID;
@@ -223,6 +219,5 @@ public class TripDetailsActivity extends AppCompatActivity {
 
         }
     }
-
 
 }

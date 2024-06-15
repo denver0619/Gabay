@@ -1,5 +1,6 @@
 package com.digiview.gabay.ui.trips;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.digiview.gabay.R;
 import com.digiview.gabay.domain.entities.Trip;
 import com.digiview.gabay.services.TripService;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -26,57 +28,52 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import com.digiview.gabay.R;
+public class EditTripActivity extends AppCompatActivity implements View.OnClickListener{
 
-public class CreateTripActivity extends AppCompatActivity implements  View.OnClickListener{
-    //CONSTRUCTORS
-
-    //CLASS VARIABLES
     private EditText inputName;
     private EditText inputBudget;
     private EditText inputStartDate;
-    private EditText inputEndDate;
-    private Button saveButton;
+    private Button editButton;
+    String tripID;
     private TripService tripService;
-
-    //ANDROID LIFECYCLE OVERRIDES
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_create_trip);
+        setContentView(R.layout.activity_edit_trip);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+//        intent.putExtra("TRIP_ID", trip.trip_id);
+//        intent.putExtra("TRIP_NAME", trip.trip_name);
+//        intent.putExtra("TRIP_BUDGET", trip.trip_budget);
+//        intent.putExtra("TRIP_DATE", trip.trip_date);
+
+        Intent intent = getIntent();
+        tripID = intent.getStringExtra("TRIP_ID");
+        String tripName = intent.getStringExtra("TRIP_NAME");
+        Double tripBudget = intent.getDoubleExtra("TRIP_BUDGET", 0.00);
+        String tripDate = intent.getStringExtra("TRIP_DATE");
+
         modifyActionBar();
 
         tripService = TripService.getInstance();
-
         // Add DatePicker upon clicking on date input
-        inputName = findViewById(R.id.CreateTrip_InputTripName);
-        inputBudget = findViewById(R.id.CreateTrip_InputBudget);
-        inputStartDate = findViewById(R.id.CreateTrip_InputStartDate);
-        saveButton = findViewById(R.id.button_CreateTrip);
+        inputName = findViewById(R.id.EditTrip_InputTripName);
+        inputBudget = findViewById(R.id.EditTrip_InputBudget);
+        inputStartDate = findViewById(R.id.EditTrip_InputStartDate);
+        editButton = findViewById(R.id.button_EditTrip);
 
-        saveButton.setOnClickListener(this);
+        inputName.setText(tripName);
+        inputBudget.setText(tripBudget.toString());
+        inputStartDate.setText(tripDate);
 
         addDatePicker(inputStartDate);
 
-
-
-    }
-
-    //OTHER OVERRIDES
-    @Override
-    public void onClick(View v) {
-        int currentID = v.getId();
-        if (currentID == R.id.button_CreateTrip) {
-            onTripSave();
-            this.finish();
-        }
+        editButton.setOnClickListener(this);
     }
 
     @Override
@@ -143,12 +140,21 @@ public class CreateTripActivity extends AppCompatActivity implements  View.OnCli
         });
     }
 
-    public void onTripSave() {
+    @Override
+    public void onClick(View v) {
+        int currentID = v.getId();
+        if (currentID == R.id.button_EditTrip) {
+            onTripEdit();
+            this.finish();
+        }
+    }
+
+    private void onTripEdit() {
         Trip trip = new Trip();
+        trip.trip_id = tripID;
         trip.trip_name = inputName.getText().toString();
         trip.trip_budget = Double.valueOf(inputBudget.getText().toString());
         trip.trip_date = inputStartDate.getText().toString();
-        tripService.createTrip(trip);
+        tripService.editTrip(trip);
     }
-
 }

@@ -23,9 +23,7 @@ import com.google.firebase.database.DatabaseError;
 
 import java.util.List;
 
-class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
-
-    private final Context context;
+class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {private final Context context;
     private List<Item> tripItems;
     private OnItemRemoveListener onItemRemoveListener;
     public CategoryService categoryService;

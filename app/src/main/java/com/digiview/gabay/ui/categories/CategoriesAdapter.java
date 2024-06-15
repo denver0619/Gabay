@@ -41,15 +41,16 @@ class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoryV
         Category category = categoryList.get(position);
         holder.categoryName.setText(category.category_name);
         holder.categoryIcon.setImageResource(category.category_icon);
+        holder.itemView.setTag(category);
 
-        holder.editCategoryButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (categoryInterface != null) {
-                    categoryInterface.onEditButtonClick(category);
-                }
-            }
-        });
+//        holder.editCategoryButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (categoryInterface != null) {
+//                    categoryInterface.onEditButtonClick(category);
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -63,12 +64,23 @@ class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoryV
         TextView categoryName;
         ImageView categoryIcon;
         ImageButton editCategoryButton;
+        private final CategoryInterface categoryInterface;
         public CategoryViewHolder(@NonNull View itemView, CategoryInterface categoryInterface, Context context) {
             super(itemView);
 
             categoryName = itemView.findViewById(R.id.Categories_CategoryTitle);
             categoryIcon = itemView.findViewById(R.id.Categories_CategoryIcon);
             editCategoryButton = itemView.findViewById((R.id.Category_Button_Edit));
+            this.categoryInterface = categoryInterface;
+
+            editCategoryButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (categoryInterface != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
+                        categoryInterface.onEditButtonClick((Category) itemView.getTag());
+                    }
+                }
+            });
         }
     }
 }

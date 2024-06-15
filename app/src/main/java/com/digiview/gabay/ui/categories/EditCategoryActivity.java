@@ -194,12 +194,8 @@ public class EditCategoryActivity extends AppCompatActivity implements View.OnCl
         if (!iconText.isEmpty()) {
             category.category_icon = Integer.parseInt(iconText);
         } else {
-            category.category_icon = -1; // or handle this case appropriately
+            category.category_icon = -1;
         }
-
-        Log.d("catid", "output: " + category.category_id);
-        Log.d("catname", "output: " + category.category_name);
-        Log.d("caticon", "output: " + category.category_icon);
 
 
         categoryService.editCategory(category);

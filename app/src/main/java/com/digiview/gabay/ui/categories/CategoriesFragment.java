@@ -96,6 +96,20 @@ public class CategoriesFragment extends Fragment  implements CategoryInterface{
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Category updatedCategory = snapshot.getValue(Category.class);
+                if (updatedCategory == null) return;
+
+                int index = -1;
+                for (int i = 0; i < categories.size(); i++) {
+                    if (categories.get(i).category_id.equals(updatedCategory.category_id)) {
+                        index = i;
+                        break;
+                    }
+                }
+                if (index != -1) {
+                    categories.set(index, updatedCategory);
+                    categoriesAdapter.notifyItemChanged(index);
+                }
             }
 
             @Override

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.digiview.gabay.MainActivity;
 import com.digiview.gabay.R;
+import com.digiview.gabay.domain.entities.Category;
 import com.digiview.gabay.domain.entities.Trip;
 import com.digiview.gabay.services.FirebaseChildEventListenerCallback;
 import com.digiview.gabay.services.TripService;
@@ -104,6 +105,20 @@ public class TripsFragment extends Fragment implements TripInterface{
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Trip updatedTrip = snapshot.getValue(Trip.class);
+                if (updatedTrip == null) return;
+
+                int index = -1;
+                for (int i = 0; i < trips.size(); i++) {
+                    if (trips.get(i).trip_id.equals(updatedTrip.trip_id)) {
+                        index = i;
+                        break;
+                    }
+                }
+                if (index != -1) {
+                    trips.set(index, updatedTrip);
+                    tripsAdapter.notifyItemChanged(index);
+                }
             }
 
             @Override

@@ -44,7 +44,7 @@
             android:layout_marginBottom="24dp">
 
             <EditText
-                android:id="@+id/CreateTrip_InputTripName"
+                android:id="@+id/EditTrip_InputTripName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -76,7 +76,7 @@
             android:layout_marginBottom="24dp">
 
             <EditText
-                android:id="@+id/CreateTrip_InputBudget"
+                android:id="@+id/EditTrip_InputBudget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -107,7 +107,7 @@
             android:layout_marginBottom="24dp">
 
             <EditText
-                android:id="@+id/CreateTrip_InputStartDate"
+                android:id="@+id/EditTrip_InputStartDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -120,11 +120,11 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button_CreateTrip"
+            android:id="@+id/button_EditTrip"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="16dp"
-            android:text="Save"
+            android:text="Edit"
             android:textSize="16sp"
             android:backgroundTint="@color/dark_blue"/>
 

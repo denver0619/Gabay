@@ -1,5 +1,5 @@
 package com.digiview.gabay.ui.trips;
 
 public interface ItemInterface {
-    void onItemClick(int position);
+    void onItemRemove(int position);
 }
