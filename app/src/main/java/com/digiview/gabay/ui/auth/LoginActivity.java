@@ -37,8 +37,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.Objects;
 
-
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextInputEditText inputEmail, inputPassword;
     Button emailLogin, googleLogin;
@@ -46,12 +45,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth firebaseAuth;
     private GoogleSignInClient googleSignInClient;
 
-    private final ActivityResultLauncher<Intent> activityResultLauncher =  registerForActivityResult(
+    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult o) {
-                    if (o.getResultCode()==RESULT_OK) {
+                    if (o.getResultCode() == RESULT_OK) {
                         Task<GoogleSignInAccount> accountTask = GoogleSignIn.getSignedInAccountFromIntent(o.getData());
                         try {
                             GoogleSignInAccount signInAccount = accountTask.getResult(ApiException.class);
@@ -76,6 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
     );
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.buttonEmailLogin) {
@@ -98,6 +98,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             startActivity(intent);
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,6 +143,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (task.isSuccessful()) {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             if (user != null && user.isEmailVerified()) {
+                                Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -161,7 +163,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onStart();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         // if there is a user go to main activity
-        if(currentUser != null) {
+        if (currentUser != null && currentUser.isEmailVerified()) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -170,10 +172,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     // reload this activity
     private void reloadThisActivity() {
-        Intent intent = new Intent(this, RegisterActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         this.finish();
     }
-
-
 }

@@ -16,6 +16,8 @@ import com.digiview.gabay.ui.settings.SettingActivity;
 import com.digiview.gabay.ui.spending.SpendingFragment;
 import com.digiview.gabay.ui.trips.TripsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity{

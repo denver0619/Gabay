@@ -40,7 +40,7 @@ import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     TextInputEditText inputEmail, inputPassword, inputReEnterPassword;
-    Button  emailSignup, googleSignup;
+    Button emailSignup, googleSignup;
     TextView textViewLoginRedirect;
     private FirebaseAuth firebaseAuth;
     private GoogleSignInClient googleSignInClient;
@@ -50,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult o) {
-                    if (o.getResultCode()==RESULT_OK) {
+                    if (o.getResultCode() == RESULT_OK) {
                         Task<GoogleSignInAccount> accountTask = GoogleSignIn.getSignedInAccountFromIntent(o.getData());
                         try {
                             GoogleSignInAccount signInAccount = accountTask.getResult(ApiException.class);
@@ -75,7 +75,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 }
             }
     );
-
 
     @Override
     public void onClick(View v) {
@@ -108,8 +107,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return insets;
         });
 
-        // Enables offline capability of firebase rtdb
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         //initialize all needed views
         inputEmail = findViewById(R.id.textInputRegisterEmail);
@@ -128,7 +125,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         emailSignup.setOnClickListener(this);
 
         textViewLoginRedirect.setOnClickListener(this);
-
     }
 
     private void RegisterUserWithEmail() {
@@ -159,7 +155,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
-                                                    Toast.makeText(RegisterActivity.this, "Verification email sent to " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(RegisterActivity.this, "Registration successful! Verification email sent to " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                                                    // Redirect to login activity after sending verification email
+                                                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                                    startActivity(intent);
+                                                    finish();
                                                 } else {
                                                     Toast.makeText(RegisterActivity.this, "Failed to send verification email.", Toast.LENGTH_SHORT).show();
                                                 }
@@ -167,10 +167,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                         });
                             }
 
-                            // Redirect to login activity
-                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                            startActivity(intent);
-                            finish();
                         } else {
                             Toast.makeText(RegisterActivity.this, "Registration failed. " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
@@ -184,7 +180,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
         // if there is a user go to main activity
-        if(currentUser != null) {
+        if(currentUser != null && currentUser.isEmailVerified()) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -197,6 +193,4 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         startActivity(intent);
         this.finish();
     }
-
-
 }

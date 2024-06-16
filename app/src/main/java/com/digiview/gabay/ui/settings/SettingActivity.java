@@ -24,6 +24,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Locale;
 
@@ -37,6 +39,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_setting);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -143,19 +146,27 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void performLogout() {
-        // Perform logout actions here
+        // Perform logout actions her
         FirebaseAuth.getInstance().signOut();
+
+        // Clear any cached data or listeners from Firebase Realtime Database
+        FirebaseDatabase.getInstance().goOffline();
+        FirebaseDatabase.getInstance().purgeOutstandingWrites();
+
+
         GoogleSignInOptions signInOptions = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.web_client_id_default))
                 .requestEmail()
                 .build();
         GoogleSignIn.getClient(SettingActivity.this, signInOptions).signOut();
-        Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
-        finishAffinity();
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
 
+
+
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 
     @Override
