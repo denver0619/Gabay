@@ -137,7 +137,7 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
         // Enable the action bar and set the close button
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close); // Ensure you have an ic_close drawable
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

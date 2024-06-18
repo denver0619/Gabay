@@ -89,7 +89,6 @@ public class CategoriesFragment extends Fragment  implements CategoryInterface{
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Category category = snapshot.getValue(Category.class);
-                // Toast.makeText(getActivity(), trip.trip_name, Toast.LENGTH_SHORT).show();
                 categories.add(0, category);
                 categoriesAdapter.notifyItemInserted(0);
             }

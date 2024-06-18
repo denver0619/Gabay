@@ -83,7 +83,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         // Enable the action bar and set the close button
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back); // Ensure you have an ic_close drawable
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -153,15 +153,12 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         FirebaseDatabase.getInstance().goOffline();
         FirebaseDatabase.getInstance().purgeOutstandingWrites();
 
-
         GoogleSignInOptions signInOptions = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.web_client_id_default))
                 .requestEmail()
                 .build();
         GoogleSignIn.getClient(SettingActivity.this, signInOptions).signOut();
-
-
 
         Intent intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

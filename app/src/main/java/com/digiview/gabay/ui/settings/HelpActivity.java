@@ -51,7 +51,7 @@ public class HelpActivity extends AppCompatActivity {
         // Enable the action bar and set the close button
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back); // Ensure you have an ic_close drawable
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

@@ -96,14 +96,6 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
         int currentID = v.getId();
         if (currentID == R.id.AddItem_Button_AddItem) {
             Category selectedCategory = (Category) categorySpinner.getSelectedItem();
-//            if (selectedCategory != null) {
-//                TextView tv = findViewById(R.id.selectedIconTextView);
-//                ImageView iv = findViewById(R.id.selectedIconImageView);
-//
-//                tv.setText(selectedCategory.category_icon);
-//                iv.setImageResource(selectedCategory.category_icon);
-//
-//            }
              onItemSave(selectedCategory);
              this.finish();
         }

@@ -27,8 +27,6 @@ class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoryV
         this.categoryInterface = categoryInterface;
     }
 
-
-
     @NonNull
     @Override
     public CategoriesAdapter.CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
