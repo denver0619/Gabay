@@ -40,6 +40,7 @@ public class CategoryService {
 
     }
 
+    // gets a single instance of CategoryService
     public static synchronized CategoryService getInstance() {
         if (instance == null) {
             instance = new CategoryService();
@@ -47,22 +48,26 @@ public class CategoryService {
         return instance;
     }
 
+    // create a category record in the database
     public void createCategory(Category category) {
         DatabaseReference newRef = userDBRef.push();
         category.category_id = newRef.getKey();
         newRef.setValue(category);
     }
 
+    // edit a category record in the database
     public void editCategory(Category category) {
         DatabaseReference existingRef = userDBRef.child(category.category_id);
         existingRef.setValue(category);
     }
 
+    // delete a category record in the database
     public void deleteCategory(Category category) {
         DatabaseReference existingRef = userDBRef.child(category.category_id);
         existingRef.removeValue();
     }
 
+    // listens to the changes in a list of record in the database
     public void addChildEventListener(FirebaseChildEventListenerCallback<DataSnapshot> callback){
         userDBRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -92,6 +97,7 @@ public class CategoryService {
         });
     }
 
+    // listens to the changes in a single record in the database
     public void addValueEventListener(String key, FirebaseValueEventListenerCallback<DataSnapshot> callback) {
         DatabaseReference existingRef = userDBRef.child(key);
         existingRef.addValueEventListener(new ValueEventListener() {

@@ -1,5 +1,6 @@
 package com.digiview.gabay.domain.entities;
 
+// Model for Item table
 public class Item {
     public Item() {}
     public Item(String item_id, String trip_id, String category_id, String item_name, Double item_cost) {

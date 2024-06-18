@@ -43,6 +43,7 @@ public class ItemService {
         userDBRef2.keepSynced(true);
     }
 
+    // gets a single instance of ItemService
     public static synchronized ItemService getInstance() {
         if(instance==null) {
             instance = new ItemService();
@@ -50,6 +51,7 @@ public class ItemService {
         return instance;
     }
 
+    // create an item record in the database
     public void createItem(Item item) {
         DatabaseReference newRefLinear = userDBRef2.push();
         String newKey = newRefLinear.getKey();
@@ -62,6 +64,7 @@ public class ItemService {
 
     }
 
+    // edit an item record in the database
     public void editItem(Item item) {
         DatabaseReference existingRefLinear = userDBRef2.child(item.item_id);
         DatabaseReference existingRefItem = userDBRef.child(item.trip_id).child(item.item_id);
@@ -69,6 +72,7 @@ public class ItemService {
         existingRefItem.setValue(item);
     }
 
+    // delete an item record in the database
     public void deleteItem(Item item) {
         DatabaseReference existingRefLinear = userDBRef2.child(item.item_id);
         DatabaseReference existingRefItem = userDBRef.child(item.trip_id).child(item.item_id);
@@ -76,6 +80,7 @@ public class ItemService {
         existingRefItem.removeValue();
     }
 
+    // delete all related item to a trip
     public void deleteAllItemWithTripID(String tripID) {
         DatabaseReference existingRefItem = userDBRef.child(tripID);
         Query query = userDBRef2.orderByChild("trip_id").equalTo(tripID);
@@ -101,6 +106,7 @@ public class ItemService {
         existingRefItem.removeValue();
     }
 
+    // listens to the changes in a list of record in the database related to a trip
     public void addChildEventListenerForItemList(String tripID, FirebaseChildEventListenerCallback<DataSnapshot> callback) {
         DatabaseReference existingRefItem = userDBRef.child(tripID);
         existingRefItem.addChildEventListener(new ChildEventListener() {
@@ -131,6 +137,7 @@ public class ItemService {
         });
     }
 
+    // listens to the changes in a list of record in the database
     public void addChildEventListenerForRecentAddedItem(FirebaseChildEventListenerCallback<DataSnapshot> callback) {
         userDBRef2.addChildEventListener(new ChildEventListener() {
             @Override

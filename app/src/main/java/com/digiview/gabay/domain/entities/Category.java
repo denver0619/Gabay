@@ -1,5 +1,6 @@
 package com.digiview.gabay.domain.entities;
 
+// Model for Category table
 public class Category {
     public Category() {}
 

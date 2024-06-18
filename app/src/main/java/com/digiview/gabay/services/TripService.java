@@ -39,6 +39,7 @@ public final class TripService {
         itemService = ItemService.getInstance();
     }
 
+    // gets a single instance of TripService
     public static synchronized TripService getInstance() {
         if (instance == null) {
             instance = new TripService();
@@ -46,24 +47,27 @@ public final class TripService {
         return instance;
     }
 
+    // create a trip record in the database
     public void createTrip(Trip trip) {
         DatabaseReference newRef = userDBRef.push();
         trip.trip_id = newRef.getKey();
         newRef.setValue(trip);
     }
 
+    // edit a trip record in the database
     public void editTrip(Trip trip) {
         DatabaseReference existingRef = userDBRef.child(trip.trip_id);
         existingRef.setValue(trip);
     }
 
+    // delete a trip record in the database
     public void deleteTrip(Trip trip) {
         DatabaseReference existingRef = userDBRef.child(trip.trip_id);
         itemService.deleteAllItemWithTripID(trip.trip_id);
         existingRef.removeValue();
     }
 
-
+    // listens to the changes in a list of record in the database
     public void addChildEventListener(FirebaseChildEventListenerCallback<DataSnapshot> callback) {
         userDBRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -81,20 +85,6 @@ public final class TripService {
             @Override
             public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 callback.onChildMoved(snapshot, previousChildName);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                callback.onCancelled(error);
-            }
-        });
-    }
-
-    public void addValueEventListener(String key, FirebaseValueEventListenerCallback<DataSnapshot> callback) {
-        DatabaseReference existingRef = userDBRef.child(key);
-        existingRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                callback.onDataChange(snapshot);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

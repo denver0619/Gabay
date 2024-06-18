@@ -1,5 +1,6 @@
 package com.digiview.gabay.domain.entities;
 
+// Model for Trip table
 public class Trip {
     public Trip() {}
 
