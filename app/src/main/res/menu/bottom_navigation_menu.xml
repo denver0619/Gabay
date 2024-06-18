@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_spending"
+        android:enabled="true"
+        android:title="Spending"
+        android:icon="@drawable/ic_wallet"/>
+
+    <item
+        android:id="@+id/navigation_trips"
+        android:enabled="true"
+        android:title="Trips"
+        android:icon="@drawable/ic_suitcase_solid"/>
+
+    <item
+        android:id="@+id/navigation_categories"
+        android:enabled="true"
+        android:title="Categories"
+        android:icon="@drawable/ic_shapes_solid"/>
+</menu>

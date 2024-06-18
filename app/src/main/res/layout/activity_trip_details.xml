@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.trips.TripDetailsActivity"
+    android:background="@color/gray"
+    android:fitsSystemWindows="true">
+
+   <LinearLayout
+       android:id="@+id/TripDetails_Linear1"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:padding="24dp"
+       android:layout_marginTop="16dp"
+       android:orientation="vertical">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:background="@drawable/rounded_rectangle_border"
+           android:layout_marginBottom="12dp">
+
+           <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_budget_and_expense"/>
+
+           <LinearLayout
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:orientation="vertical">
+
+               <View
+                   android:layout_width="0dp"
+                   android:layout_height="0dp"
+                   android:layout_weight="1" />
+
+               <TextView
+                   android:id="@+id/TripDetails_Budget"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:gravity="center"
+                   android:text="₱ 15, 263.00"
+                   android:textSize="16dp"
+                   android:textStyle="bold"
+                   />
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:gravity="center"
+                   android:text="Budget"
+                   android:textSize="12dp"
+                   />
+
+               <View
+                   android:layout_width="0dp"
+                   android:layout_height="0dp"
+                   android:layout_weight="1" />
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:orientation="vertical"
+               android:background="@drawable/rounded_rectangle_left_border">
+
+               <View
+                   android:layout_width="0dp"
+                   android:layout_height="0dp"
+                   android:layout_weight="1" />
+
+               <TextView
+                   android:id="@+id/TripDetails_Expense"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:gravity="center"
+                   android:text="₱ 5, 263.00"
+                   android:textSize="16dp"
+                   android:textStyle="bold"
+                   />
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:gravity="center"
+                   android:text="Expense"
+                   android:textSize="12dp"
+                   />
+
+               <View
+                   android:layout_width="0dp"
+                   android:layout_height="0dp"
+                   android:layout_weight="1" />
+
+           </LinearLayout>
+
+       </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:layout_marginBottom="12dp"
+           android:background="@drawable/rounded_rectangle_border">
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="horizontal"
+               android:paddingLeft="20dp"
+               android:paddingRight="20dp">
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1"
+                   android:paddingLeft="20dp"
+                   android:text="Remaining Balance"
+                   android:gravity="center"
+                   android:textSize="12dp"/>
+
+
+               <TextView
+                   android:id="@+id/TripDetails_RemainingBalance"
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1"
+                   android:paddingRight="20dp"
+                   android:text="₱ 10, 000.00"
+                   android:gravity="center"
+                   android:textSize="16dp"
+                   android:textStyle="bold"
+                   android:textColor="@color/dark_green"
+                   />
+
+
+
+
+           </LinearLayout>
+
+       </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:background="@drawable/rounded_border_white_small">
+
+            <!--Blue Bar-->
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:padding="16dp"
+               android:orientation="horizontal"
+               android:background="@drawable/rounded_top_rectangle_dark_blue">
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="Items"
+                   android:textStyle="bold"
+                   android:textColor="@color/white"
+                   android:layout_gravity="center"
+                   />
+
+               <ImageButton
+                   android:id="@+id/TripDetails_Button_AddItem"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:background="@drawable/ic_add_circle"/>
+
+           </LinearLayout>
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/TripDetails_RecyclerView"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:padding="16dp">
+
+           </androidx.recyclerview.widget.RecyclerView>
+
+       </LinearLayout>
+
+
+
+   </LinearLayout>
+
+
+
+
+</ScrollView>

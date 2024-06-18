@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".Gabay"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,14 +14,58 @@
         android:theme="@style/Theme.Gabay"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".ui.trips.EditTripActivity"
+            android:exported="false"
+            android:label="Edit Trip"/>
+        <activity
+            android:name=".ui.categories.EditCategoryActivity"
+            android:exported="false"
+            android:label="Edit Category"/>
+        <activity
+            android:name=".ui.settings.HelpActivity"
+            android:exported="false"
+            android:label="Help" />
+        <activity
+            android:name=".ui.trips.AddItemActivity"
+            android:exported="false"
+            android:label="Add Item" />
+        <activity
+            android:name=".ui.trips.TripDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.settings.AboutUsActivity"
+            android:exported="false"
+            android:label="About Us" />
+        <activity
+            android:name=".ui.settings.SettingActivity"
+            android:exported="false"
+            android:label="Settings" />
+        <activity
+            android:name=".ui.categories.CreateCategoryActivity"
+            android:exported="false"
+            android:label="Create Category" />
+        <activity
+            android:name=".ui.trips.CreateTripActivity"
+            android:exported="false"
+            android:label="Create Trip" />
+        <activity
+            android:name=".ui.auth.LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Auth" />
+        <activity
+            android:name=".ui.auth.RegisterActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Auth">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Gabay" />
     </application>
 
 </manifest>

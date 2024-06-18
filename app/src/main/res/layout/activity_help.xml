@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.settings.HelpActivity"
+    android:fitsSystemWindows="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Help_ConstraintContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/Help_LinearContainer1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/Help_ConstraintContainer"
+            android:padding="24dp"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Getting Started"
+                android:gravity="start"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="24dp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/help_fig1"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login or Signup"
+                android:textStyle="bold"
+                android:textColor="@color/dark_blue"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help_loginsignup"
+                android:lineHeight="18dp"
+                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="28dp"
+                android:textSize="12sp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter your spending"
+                android:textStyle="bold"
+                android:textColor="@color/dark_blue"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help_enter_your_spending"
+                android:lineHeight="18dp"
+                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="28dp"
+                android:textSize="12sp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Track your spending"
+                android:textStyle="bold"
+                android:textColor="@color/dark_blue"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help_track_your_spending"
+                android:lineHeight="18dp"
+                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="28dp"
+                android:textSize="12sp"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/dark_gray"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Help_LinearContainer2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/Help_LinearContainer1"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Spending"
+                android:gravity="start"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help_spending"
+                android:lineHeight="18dp"
+                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="28dp"
+                android:textSize="12sp"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/help_fig2"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Figures Explained"
+                android:textStyle="bold"
+                android:textColor="@color/dark_blue"
+                android:gravity="start"
+                android:textSize="18sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Expense"
+                android:textStyle="bold"
+                android:textColor="@color/dark_blue"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help_expense"
+                android:lineHeight="18dp"
+                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="28dp"
+                android:textSize="12sp"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total Expense"
+                android:textStyle="bold"
+                android:textColor="@color/dark_blue"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help_total_expense"
+                android:lineHeight="18dp"
+                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="28dp"
+                android:textSize="12sp"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Budget"
+                android:textStyle="bold"
+                android:textColor="@color/dark_blue"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help_budget"
+                android:lineHeight="18dp"
+                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="28dp"
+                android:textSize="12sp"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Remaining Balance"
+                android:textStyle="bold"
+                android:textColor="@color/dark_blue"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help_remaining_balance"
+                android:lineHeight="18dp"
+                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="28dp"
+                android:textSize="12sp"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/dark_gray"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Help_LinearContainer3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/Help_LinearContainer2"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Trips"
+                android:gravity="start"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help_trips"
+                android:lineHeight="18dp"
+                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="28dp"
+                android:textSize="12sp"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/help_fig3"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Adding trip"
+                android:textStyle="bold"
+                android:textColor="@color/dark_blue"
+                android:gravity="start"
+                android:textSize="18sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Start date"
+                android:textStyle="bold"
+                android:textColor="@color/dark_blue"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help_start_date"
+                android:lineHeight="18dp"
+                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="28dp"
+                android:textSize="12sp"
+                />
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Adding item"
+                android:textStyle="bold"
+                android:textColor="@color/dark_blue"
+                android:gravity="start"
+                android:textSize="18sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help_adding_item"
+                android:lineHeight="18dp"
+                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="28dp"
+                android:textSize="12sp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select category"
+                android:textStyle="bold"
+                android:textColor="@color/dark_blue"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help_select_category"
+                android:lineHeight="18dp"
+                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="28dp"
+                android:textSize="12sp"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/dark_gray"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Help_LinearContainer4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/Help_LinearContainer3"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Categories"
+                android:gravity="start"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help_categories"
+                android:lineHeight="18dp"
+                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="28dp"
+                android:textSize="12sp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/Help_LinearContainer4"
+            android:background="@color/dark_blue"
+            android:paddingTop="12dp"
+            android:paddingRight="24dp"
+            android:paddingBottom="12dp"
+            android:paddingLeft="24dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/footer"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:lineHeight="20dp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:lineHeight="20dp"/>
+
+        </LinearLayout>
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
